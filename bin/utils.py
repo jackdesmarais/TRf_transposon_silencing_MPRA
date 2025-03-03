@@ -49,36 +49,44 @@ class PlottingContext:
         font_scale (float): Scale factor for font sizes
         rc (dict): Dictionary of rc parameters to override
     """
-    def __init__(self, sns_context: dict = None, rc_context: dict = None, palette: Union[str, list] = None):
+    def __init__(self, sns_settings: Union[dict, str] = None, rc_settings: dict = None, palette: Union[str, list, sns.palettes._ColorPalette] = None):
         # Start with defaults and update with any passed values
-        self.sns_context = sns_defaults.copy()
-        if sns_context:
-            self.sns_context.update(sns_context)
+        self.sns_settings = sns_defaults.copy()
+        if sns_settings:
+            if isinstance(sns_settings, str):
+                self.sns_settings = sns_settings
+            else:
+                self.sns_settings.update(sns_settings)
 
-        self.sns_context = sns.plotting_context(self.sns_context)
+        self.sns_settings = sns.plotting_context(self.sns_settings)
             
-        self.rc_context = rc_defaults.copy() 
-        if rc_context:
-            self.rc_context.update(rc_context)
+        self.rc_settings = rc_defaults.copy() 
+        if rc_settings:
+            self.rc_settings.update(rc_settings)
 
-        self.rc_context = rc_context(self.rc_context)
+        self.rc_settings = rc_context(self.rc_settings)
         
         # Store the original palette
-        self.palette = palette
-        
+        if not isinstance(palette, sns.palettes._ColorPalette):
+            self.palette = sns.color_palette(palette)
+        else:
+            self.palette = palette
+        self.original_palette = None
     def __enter__(self):
-        self.rc_context = rc_context(self.rc)
-        self.sns_context.__enter__()
-        self.rc_context.__enter__()
+        self.rc_context = rc_context(self.rc_settings)
+        self.sns_settings.__enter__()
+        self.rc_settings.__enter__()
         
         if self.palette is not None:
             # Store the original palette
             self.original_palette = sns.color_palette()
-            sns.set_palette(sns.color_palette(self.palette))
+            sns.set_palette(self.palette)
         return self
         
     def __exit__(self, exc_type, exc_val, exc_tb):
         # Reset to original palette
-        sns.set_palette(self.original_palette)
-        self.rc_context.__exit__(exc_type, exc_val, exc_tb)
-        self.sns_context.__exit__(exc_type, exc_val, exc_tb)
+        if self.original_palette is not None:
+            sns.set_palette(self.original_palette)
+            self.original_palette = None
+        self.rc_settings.__exit__(exc_type, exc_val, exc_tb)
+        self.sns_settings.__exit__(exc_type, exc_val, exc_tb)
