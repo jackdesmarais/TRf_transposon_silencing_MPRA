@@ -1,3 +1,6 @@
-bin/__pycache__/
 data/
 figure_panels/
+docs/build/
+library_analyzer/__pycache__/
+docs/source/library_analyzer.rst
+docs/source/modules.rst
