@@ -17,7 +17,7 @@ from scipy.stats import pearsonr,gaussian_kde, barnard_exact
 
 from math import ceil
 from copy import copy
-from bin.utils import PlottingContext
+from library_analyzer.utils import PlottingContext
 
 def make_density(x):
     """Calculate kernel density estimate for array.
