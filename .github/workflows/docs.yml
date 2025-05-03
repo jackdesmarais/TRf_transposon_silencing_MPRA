@@ -15,24 +15,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Set up Conda
-        uses: conda-incubator/setup-miniconda@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          activate-environment: transposon_silencing
-          environment-file: env.yml
-          auto-activate-base: false
+          python-version: '3.9'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # Install the package in editable mode with all dependencies
+          pip install -e .
+          # Install documentation dependencies
+          pip freeze  # Debug: show all installed packages
 
       - name: Build docs
-        shell: bash -l {0}
-        env:
-          PYTHONPATH: ${{ github.workspace }}
         run: |
-          conda activate transposon_silencing
           # Debug: Print current directory and its contents
           pwd
           ls -la
           # Debug: Print Python path and try to import the package
-          python -c "import sys; print('Python path:', sys.path); import library_analyzer; print('Package location:', library_analyzer.__file__)"
+          python -c "import sys; print('Python path:', sys.path); import library_analyzer; print('Package location:', library_analyzer.__file__); from library_analyzer import Library; print('Library class location:', Library.__file__)"
           cd docs
           make clean
           # Generate API documentation
