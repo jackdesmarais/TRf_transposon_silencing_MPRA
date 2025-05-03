@@ -29,6 +29,7 @@ jobs:
       - name: Build docs
         run: |
           cd docs
+          make clean
           sphinx-apidoc -o source ../library_analyzer/
           make html
           # Debug: show the contents of the build directory
