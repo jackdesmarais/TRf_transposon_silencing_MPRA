@@ -1,21 +1,41 @@
 from setuptools import setup, find_packages
 
+# Core requirements that are always installed
+install_requires = [
+    "pandas==1.5.3",
+    "numpy",
+    "matplotlib==3.6",
+    "seaborn==0.13.1",  # Pinned to match environment version
+    "scipy==1.12",
+    "statsmodels",
+]
+
+# Optional requirements for documentation
+docs_require = [
+    "sphinx==5.0.2",
+    "sphinx_rtd_theme",
+    "myst-parser",
+]
+
+# Optional requirements for development
+notebook_require = [
+    "ipykernel",
+    "scikit-learn",
+    "tensorflow==2.15.0",  # Last version with integrated keras
+    "h5py",  # Required for model saving/loading
+    "mavenn==1.0.2",  # From bioconda channel
+]
+
 setup(
     name="library_analyzer",
     version="0.1.0",
     packages=find_packages(),
-    install_requires=[
-        "pandas==1.5.3",
-        "numpy==1.24",
-        "matplotlib==3.6",
-        "seaborn",
-        "scipy==1.12",
-        "statsmodels",
-        # Documentation dependencies
-        "sphinx==5.0.2",
-        "sphinx_rtd_theme",
-        "myst-parser",
-    ],
+    install_requires=install_requires,
+    extras_require={
+        'docs': docs_require,  # Install with: pip install -e ".[docs]"
+        'notebooks': notebook_require,    # Install with: pip install -e ".[notebooks]"
+        'all': docs_require + notebook_require,  # Install with: pip install -e ".[all]"
+    },
     author="John J Desmarais",
     author_email="john.j.desmarais@gmail.com",
     description="A package for analyzing MPRA library data",

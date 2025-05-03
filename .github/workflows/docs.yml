@@ -24,7 +24,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           # Install the package in editable mode with all dependencies
-          pip install -e .
+          pip install -e ".[docs]"
           pip freeze  # Debug: show all installed packages
 
       - name: Build docs
