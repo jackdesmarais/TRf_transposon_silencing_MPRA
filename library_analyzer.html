@@ -260,7 +260,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.core.Library.data_df">
 <span class="sig-name descname"><span class="pre">data_df</span></span><a class="headerlink" href="#library_analyzer.core.Library.data_df" title="Permalink to this definition"></a></dt>
-<dd><p>Library data</p>
+<dd><p>DataFrame containing the library data with counts and abundances</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pandas.DataFrame</p>
@@ -271,7 +271,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.core.Library.replicates">
 <span class="sig-name descname"><span class="pre">replicates</span></span><a class="headerlink" href="#library_analyzer.core.Library.replicates" title="Permalink to this definition"></a></dt>
-<dd><p>Replicate information</p>
+<dd><p>Dictionary mapping replicate names to their timepoints</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict</p>
@@ -282,7 +282,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.core.Library.id_cols">
 <span class="sig-name descname"><span class="pre">id_cols</span></span><a class="headerlink" href="#library_analyzer.core.Library.id_cols" title="Permalink to this definition"></a></dt>
-<dd><p>Column names for variant IDs</p>
+<dd><p>List of column names that identify individual variants</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list</p>
@@ -293,7 +293,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.core.Library.group_cols">
 <span class="sig-name descname"><span class="pre">group_cols</span></span><a class="headerlink" href="#library_analyzer.core.Library.group_cols" title="Permalink to this definition"></a></dt>
-<dd><p>Column names for grouping variants</p>
+<dd><p>List of column names used for grouping variants</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list</p>
@@ -304,7 +304,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.core.Library.rate_method">
 <span class="sig-name descname"><span class="pre">rate_method</span></span><a class="headerlink" href="#library_analyzer.core.Library.rate_method" title="Permalink to this definition"></a></dt>
-<dd><p>Method for calculating rates</p>
+<dd><p>Method used for calculating rates (‘l2fc’ or ‘l10fc’)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
@@ -315,7 +315,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.core.Library.alphabet">
 <span class="sig-name descname"><span class="pre">alphabet</span></span><a class="headerlink" href="#library_analyzer.core.Library.alphabet" title="Permalink to this definition"></a></dt>
-<dd><p>Valid characters in sequences</p>
+<dd><p>List of valid characters in sequences</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list</p>
@@ -326,7 +326,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.core.Library.WT_seq">
 <span class="sig-name descname"><span class="pre">WT_seq</span></span><a class="headerlink" href="#library_analyzer.core.Library.WT_seq" title="Permalink to this definition"></a></dt>
-<dd><p>Wild-type sequence</p>
+<dd><p>Wild-type sequence used as reference</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
@@ -337,7 +337,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.core.Library.fitness_measure">
 <span class="sig-name descname"><span class="pre">fitness_measure</span></span><a class="headerlink" href="#library_analyzer.core.Library.fitness_measure" title="Permalink to this definition"></a></dt>
-<dd><p>Column name for fitness values</p>
+<dd><p>Name of the column containing fitness values</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
@@ -349,14 +349,14 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data_df</strong> (<em>pandas.DataFrame</em>) – Library data</p></li>
-<li><p><strong>replicates</strong> (<em>dict</em>) – Replicate information</p></li>
-<li><p><strong>id_cols</strong> (<em>list</em>) – Column names for variant IDs</p></li>
-<li><p><strong>group_cols</strong> (<em>list</em>) – Column names for grouping variants</p></li>
-<li><p><strong>rate_method</strong> (<em>str</em>) – Method for calculating rates</p></li>
-<li><p><strong>alphabet</strong> (<em>list</em>) – Valid characters in sequences</p></li>
-<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence</p></li>
-<li><p><strong>fitness_measure</strong> (<em>str</em>) – Column name for fitness values</p></li>
+<li><p><strong>data_df</strong> (<em>pandas.DataFrame</em>) – DataFrame containing the library data with counts and abundances</p></li>
+<li><p><strong>replicates</strong> (<em>dict</em>) – Dictionary mapping replicate names to their timepoints</p></li>
+<li><p><strong>id_cols</strong> (<em>list</em>) – List of column names that identify individual variants</p></li>
+<li><p><strong>group_cols</strong> (<em>list</em>) – List of column names used for grouping variants</p></li>
+<li><p><strong>rate_method</strong> (<em>str</em>) – Method used for calculating rates (‘l2fc’ or ‘l10fc’)</p></li>
+<li><p><strong>alphabet</strong> (<em>list</em>) – List of valid characters in sequences</p></li>
+<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence used as reference</p></li>
+<li><p><strong>fitness_measure</strong> (<em>str</em>) – Name of the column containing fitness values</p></li>
 </ul>
 </dd>
 </dl>
@@ -367,17 +367,65 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data_df</strong> (<em>pandas.DataFrame</em>) – Library data</p></li>
-<li><p><strong>replicates</strong> (<em>dict</em>) – Replicate information</p></li>
-<li><p><strong>id_cols</strong> (<em>list</em>) – Column names for variant IDs</p></li>
-<li><p><strong>group_cols</strong> (<em>list</em>) – Column names for grouping variants</p></li>
-<li><p><strong>rate_method</strong> (<em>str</em>) – Method for calculating rates</p></li>
-<li><p><strong>alphabet</strong> (<em>list</em>) – Valid characters in sequences</p></li>
-<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence</p></li>
-<li><p><strong>fitness_measure</strong> (<em>str</em>) – Column name for fitness values</p></li>
+<li><p><strong>data_df</strong> (<em>pandas.DataFrame</em>) – DataFrame containing the library data with counts and abundances</p></li>
+<li><p><strong>replicates</strong> (<em>dict</em>) – Dictionary mapping replicate names to their timepoints</p></li>
+<li><p><strong>id_cols</strong> (<em>list</em>) – List of column names that identify individual variants</p></li>
+<li><p><strong>group_cols</strong> (<em>list</em>) – List of column names used for grouping variants</p></li>
+<li><p><strong>rate_method</strong> (<em>str</em>) – Method used for calculating rates (‘l2fc’ or ‘l10fc’)</p></li>
+<li><p><strong>alphabet</strong> (<em>list</em>) – List of valid characters in sequences</p></li>
+<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence used as reference</p></li>
+<li><p><strong>fitness_measure</strong> (<em>str</em>) – Name of the column containing fitness values</p></li>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">data_df</span></span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd><p>DataFrame containing the library data with counts and abundances</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">replicates</span></span><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<dd><p>Dictionary mapping replicate names to their timepoints</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">id_cols</span></span><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
+<dd><p>List of column names that identify individual variants</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">group_cols</span></span><a class="headerlink" href="#id3" title="Permalink to this definition"></a></dt>
+<dd><p>List of column names used for grouping variants</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">rate_method</span></span><a class="headerlink" href="#id4" title="Permalink to this definition"></a></dt>
+<dd><p>Method used for calculating rates (‘l2fc’ or ‘l10fc’)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">alphabet</span></span><a class="headerlink" href="#id5" title="Permalink to this definition"></a></dt>
+<dd><p>List of valid characters in sequences</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">WT_seq</span></span><a class="headerlink" href="#id6" title="Permalink to this definition"></a></dt>
+<dd><p>Wild-type sequence used as reference</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">fitness_measure</span></span><a class="headerlink" href="#id7" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the column containing fitness values</p>
 </dd></dl>
 
 <dl class="py method">
@@ -717,7 +765,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.Library.data_df">
 <span class="sig-name descname"><span class="pre">data_df</span></span><a class="headerlink" href="#library_analyzer.Library.data_df" title="Permalink to this definition"></a></dt>
-<dd><p>Library data</p>
+<dd><p>DataFrame containing the library data with counts and abundances</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pandas.DataFrame</p>
@@ -728,7 +776,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.Library.replicates">
 <span class="sig-name descname"><span class="pre">replicates</span></span><a class="headerlink" href="#library_analyzer.Library.replicates" title="Permalink to this definition"></a></dt>
-<dd><p>Replicate information</p>
+<dd><p>Dictionary mapping replicate names to their timepoints</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict</p>
@@ -739,7 +787,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.Library.id_cols">
 <span class="sig-name descname"><span class="pre">id_cols</span></span><a class="headerlink" href="#library_analyzer.Library.id_cols" title="Permalink to this definition"></a></dt>
-<dd><p>Column names for variant IDs</p>
+<dd><p>List of column names that identify individual variants</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list</p>
@@ -750,7 +798,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.Library.group_cols">
 <span class="sig-name descname"><span class="pre">group_cols</span></span><a class="headerlink" href="#library_analyzer.Library.group_cols" title="Permalink to this definition"></a></dt>
-<dd><p>Column names for grouping variants</p>
+<dd><p>List of column names used for grouping variants</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list</p>
@@ -761,7 +809,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.Library.rate_method">
 <span class="sig-name descname"><span class="pre">rate_method</span></span><a class="headerlink" href="#library_analyzer.Library.rate_method" title="Permalink to this definition"></a></dt>
-<dd><p>Method for calculating rates</p>
+<dd><p>Method used for calculating rates (‘l2fc’ or ‘l10fc’)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
@@ -772,7 +820,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.Library.alphabet">
 <span class="sig-name descname"><span class="pre">alphabet</span></span><a class="headerlink" href="#library_analyzer.Library.alphabet" title="Permalink to this definition"></a></dt>
-<dd><p>Valid characters in sequences</p>
+<dd><p>List of valid characters in sequences</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list</p>
@@ -783,7 +831,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.Library.WT_seq">
 <span class="sig-name descname"><span class="pre">WT_seq</span></span><a class="headerlink" href="#library_analyzer.Library.WT_seq" title="Permalink to this definition"></a></dt>
-<dd><p>Wild-type sequence</p>
+<dd><p>Wild-type sequence used as reference</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
@@ -794,7 +842,7 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="library_analyzer.Library.fitness_measure">
 <span class="sig-name descname"><span class="pre">fitness_measure</span></span><a class="headerlink" href="#library_analyzer.Library.fitness_measure" title="Permalink to this definition"></a></dt>
-<dd><p>Column name for fitness values</p>
+<dd><p>Name of the column containing fitness values</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
@@ -806,14 +854,14 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data_df</strong> (<em>pandas.DataFrame</em>) – Library data</p></li>
-<li><p><strong>replicates</strong> (<em>dict</em>) – Replicate information</p></li>
-<li><p><strong>id_cols</strong> (<em>list</em>) – Column names for variant IDs</p></li>
-<li><p><strong>group_cols</strong> (<em>list</em>) – Column names for grouping variants</p></li>
-<li><p><strong>rate_method</strong> (<em>str</em>) – Method for calculating rates</p></li>
-<li><p><strong>alphabet</strong> (<em>list</em>) – Valid characters in sequences</p></li>
-<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence</p></li>
-<li><p><strong>fitness_measure</strong> (<em>str</em>) – Column name for fitness values</p></li>
+<li><p><strong>data_df</strong> (<em>pandas.DataFrame</em>) – DataFrame containing the library data with counts and abundances</p></li>
+<li><p><strong>replicates</strong> (<em>dict</em>) – Dictionary mapping replicate names to their timepoints</p></li>
+<li><p><strong>id_cols</strong> (<em>list</em>) – List of column names that identify individual variants</p></li>
+<li><p><strong>group_cols</strong> (<em>list</em>) – List of column names used for grouping variants</p></li>
+<li><p><strong>rate_method</strong> (<em>str</em>) – Method used for calculating rates (‘l2fc’ or ‘l10fc’)</p></li>
+<li><p><strong>alphabet</strong> (<em>list</em>) – List of valid characters in sequences</p></li>
+<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence used as reference</p></li>
+<li><p><strong>fitness_measure</strong> (<em>str</em>) – Name of the column containing fitness values</p></li>
 </ul>
 </dd>
 </dl>
@@ -824,17 +872,65 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data_df</strong> (<em>pandas.DataFrame</em>) – Library data</p></li>
-<li><p><strong>replicates</strong> (<em>dict</em>) – Replicate information</p></li>
-<li><p><strong>id_cols</strong> (<em>list</em>) – Column names for variant IDs</p></li>
-<li><p><strong>group_cols</strong> (<em>list</em>) – Column names for grouping variants</p></li>
-<li><p><strong>rate_method</strong> (<em>str</em>) – Method for calculating rates</p></li>
-<li><p><strong>alphabet</strong> (<em>list</em>) – Valid characters in sequences</p></li>
-<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence</p></li>
-<li><p><strong>fitness_measure</strong> (<em>str</em>) – Column name for fitness values</p></li>
+<li><p><strong>data_df</strong> (<em>pandas.DataFrame</em>) – DataFrame containing the library data with counts and abundances</p></li>
+<li><p><strong>replicates</strong> (<em>dict</em>) – Dictionary mapping replicate names to their timepoints</p></li>
+<li><p><strong>id_cols</strong> (<em>list</em>) – List of column names that identify individual variants</p></li>
+<li><p><strong>group_cols</strong> (<em>list</em>) – List of column names used for grouping variants</p></li>
+<li><p><strong>rate_method</strong> (<em>str</em>) – Method used for calculating rates (‘l2fc’ or ‘l10fc’)</p></li>
+<li><p><strong>alphabet</strong> (<em>list</em>) – List of valid characters in sequences</p></li>
+<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence used as reference</p></li>
+<li><p><strong>fitness_measure</strong> (<em>str</em>) – Name of the column containing fitness values</p></li>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">data_df</span></span><a class="headerlink" href="#id8" title="Permalink to this definition"></a></dt>
+<dd><p>DataFrame containing the library data with counts and abundances</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">replicates</span></span><a class="headerlink" href="#id9" title="Permalink to this definition"></a></dt>
+<dd><p>Dictionary mapping replicate names to their timepoints</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id10">
+<span class="sig-name descname"><span class="pre">id_cols</span></span><a class="headerlink" href="#id10" title="Permalink to this definition"></a></dt>
+<dd><p>List of column names that identify individual variants</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id11">
+<span class="sig-name descname"><span class="pre">group_cols</span></span><a class="headerlink" href="#id11" title="Permalink to this definition"></a></dt>
+<dd><p>List of column names used for grouping variants</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id12">
+<span class="sig-name descname"><span class="pre">rate_method</span></span><a class="headerlink" href="#id12" title="Permalink to this definition"></a></dt>
+<dd><p>Method used for calculating rates (‘l2fc’ or ‘l10fc’)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id13">
+<span class="sig-name descname"><span class="pre">alphabet</span></span><a class="headerlink" href="#id13" title="Permalink to this definition"></a></dt>
+<dd><p>List of valid characters in sequences</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id14">
+<span class="sig-name descname"><span class="pre">WT_seq</span></span><a class="headerlink" href="#id14" title="Permalink to this definition"></a></dt>
+<dd><p>Wild-type sequence used as reference</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id15">
+<span class="sig-name descname"><span class="pre">fitness_measure</span></span><a class="headerlink" href="#id15" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the column containing fitness values</p>
 </dd></dl>
 
 <dl class="py method">

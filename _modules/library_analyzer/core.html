@@ -291,36 +291,51 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for analyzing MPRA library data.</span>
 <span class="sd">    </span>
 <span class="sd">    Attributes:</span>
-<span class="sd">        data_df (pandas.DataFrame): Library data</span>
-<span class="sd">        replicates (dict): Replicate information</span>
-<span class="sd">        id_cols (list): Column names for variant IDs</span>
-<span class="sd">        group_cols (list): Column names for grouping variants</span>
-<span class="sd">        rate_method (str): Method for calculating rates</span>
-<span class="sd">        alphabet (list): Valid characters in sequences</span>
-<span class="sd">        WT_seq (str): Wild-type sequence</span>
-<span class="sd">        fitness_measure (str): Column name for fitness values</span>
+<span class="sd">        data_df (pandas.DataFrame): DataFrame containing the library data with counts and abundances</span>
+<span class="sd">        replicates (dict): Dictionary mapping replicate names to their timepoints</span>
+<span class="sd">        id_cols (list): List of column names that identify individual variants</span>
+<span class="sd">        group_cols (list): List of column names used for grouping variants</span>
+<span class="sd">        rate_method (str): Method used for calculating rates (&#39;l2fc&#39; or &#39;l10fc&#39;)</span>
+<span class="sd">        alphabet (list): List of valid characters in sequences</span>
+<span class="sd">        WT_seq (str): Wild-type sequence used as reference</span>
+<span class="sd">        fitness_measure (str): Name of the column containing fitness values</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Library.__init__"><a class="viewcode-back" href="../../library_analyzer.html#library_analyzer.core.Library.__init__">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_df</span><span class="p">,</span> <span class="n">replicates</span><span class="p">,</span> <span class="n">id_cols</span><span class="p">,</span> <span class="n">group_cols</span><span class="p">,</span> <span class="n">rate_method</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">,</span> <span class="n">WT_seq</span><span class="p">,</span> <span class="n">fitness_measure</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Library object.</span>
 <span class="sd">        </span>
 <span class="sd">        Args:</span>
-<span class="sd">            data_df (pandas.DataFrame): Library data</span>
-<span class="sd">            replicates (dict): Replicate information</span>
-<span class="sd">            id_cols (list): Column names for variant IDs</span>
-<span class="sd">            group_cols (list): Column names for grouping variants</span>
-<span class="sd">            rate_method (str): Method for calculating rates</span>
-<span class="sd">            alphabet (list): Valid characters in sequences</span>
-<span class="sd">            WT_seq (str): Wild-type sequence</span>
-<span class="sd">            fitness_measure (str): Column name for fitness values</span>
+<span class="sd">            data_df (pandas.DataFrame): DataFrame containing the library data with counts and abundances</span>
+<span class="sd">            replicates (dict): Dictionary mapping replicate names to their timepoints</span>
+<span class="sd">            id_cols (list): List of column names that identify individual variants</span>
+<span class="sd">            group_cols (list): List of column names used for grouping variants</span>
+<span class="sd">            rate_method (str): Method used for calculating rates (&#39;l2fc&#39; or &#39;l10fc&#39;)</span>
+<span class="sd">            alphabet (list): List of valid characters in sequences</span>
+<span class="sd">            WT_seq (str): Wild-type sequence used as reference</span>
+<span class="sd">            fitness_measure (str): Name of the column containing fitness values</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#: DataFrame containing the library data with counts and abundances</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_df</span> <span class="o">=</span> <span class="n">data_df</span>
+        
+        <span class="c1">#: Dictionary mapping replicate names to their timepoints</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">replicates</span> <span class="o">=</span> <span class="n">replicates</span>
+        
+        <span class="c1">#: List of column names that identify individual variants</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id_cols</span> <span class="o">=</span> <span class="n">id_cols</span>
+        
+        <span class="c1">#: List of column names used for grouping variants</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">group_cols</span> <span class="o">=</span> <span class="n">group_cols</span>
+        
+        <span class="c1">#: Method used for calculating rates (&#39;l2fc&#39; or &#39;l10fc&#39;)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rate_method</span> <span class="o">=</span> <span class="n">rate_method</span>
+        
+        <span class="c1">#: List of valid characters in sequences</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">alphabet</span> <span class="o">=</span> <span class="n">alphabet</span>
+        
+        <span class="c1">#: Wild-type sequence used as reference</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">WT_seq</span> <span class="o">=</span> <span class="n">WT_seq</span>
+        
+        <span class="c1">#: Name of the column containing fitness values</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fitness_measure</span> <span class="o">=</span> <span class="n">fitness_measure</span></div>
 
 <div class="viewcode-block" id="Library.build_from_reads"><a class="viewcode-back" href="../../library_analyzer.html#library_analyzer.core.Library.build_from_reads">[docs]</a>    <span class="nd">@classmethod</span>
