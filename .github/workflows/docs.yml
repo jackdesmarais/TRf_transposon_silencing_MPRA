@@ -38,7 +38,7 @@ jobs:
           make clean
           # Generate API documentation
           sphinx-apidoc -f -o source ../library_analyzer/
-          make html SPHINXOPTS="-v"  # More verbose output for debugging
+          make html SPHINXOPTS="-vv"  # More verbose output for debugging
           # Debug: show the contents of the build directory
           ls -R build/html
           
