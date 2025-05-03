@@ -35,7 +35,7 @@ source_suffix = {
 
 # Paths setup
 templates_path = ['_templates']
-exclude_patterns = []
+exclude_patterns = ['setup.py', '**/setup.py']
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -88,3 +88,6 @@ myst_enable_extensions = [
 source_parsers = {
     '.md': 'myst_parser.sphinx_'
 }
+
+# Explicitly exclude setup.py from autodoc
+autodoc_exclude_modules = ['setup']
