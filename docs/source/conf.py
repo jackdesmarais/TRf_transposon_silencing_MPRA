@@ -24,7 +24,6 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
-    'sphinx.ext.githubpages',
     'sphinx.ext.mathjax',
     'myst_parser',
     'nbsphinx',
@@ -34,11 +33,12 @@ extensions = [
 source_suffix = {
     '.rst': 'restructuredtext',
     '.md': 'markdown',
+    '.ipynb': 'nbsphinx',
 }
 
 # Paths setup
 templates_path = ['_templates']
-exclude_patterns = ['setup.py', '**/setup.py', '_build', '**.ipynb_checkpoints']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '**.ipynb_checkpoints']
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -116,3 +116,4 @@ autoclass_content = 'both'
 # Configure nbsphinx
 nbsphinx_execute = 'never'
 nbsphinx_allow_errors = True
+nbsphinx_kernel_name = 'TRf_transposon_silencing_MPRA'

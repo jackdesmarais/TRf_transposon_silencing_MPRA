@@ -1,21 +1,24 @@
-Jupyter Notebooks
+Example Notebooks
 =================
 
-This section contains the Jupyter notebooks used for data analysis and figure generation.
+This section contains Jupyter notebooks demonstrating the usage of the library_analyzer package.
 
 Data Processing
 --------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   notebooks/process_data_to_library
+   notebooks/process_data_to_library.ipynb
 
 Figure Generation
 ---------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   notebooks/make_figure_panels
-   notebooks/make_supplemental_figures 
+   notebooks/make_figure_panels.ipynb
+   notebooks/make_supplemental_figures.ipynb
+
+.. note::
+   These notebooks are provided as examples and are not executed during documentation build. 
