@@ -116,4 +116,14 @@ autoclass_content = 'both'
 # Configure nbsphinx
 nbsphinx_execute = 'never'
 nbsphinx_allow_errors = True
-nbsphinx_kernel_name = 'TRf_transposon_silencing_MPRA'
+nbsphinx_kernel_name = 'python3'
+nbsphinx_timeout = 600
+
+# Add nbsphinx-specific settings
+nbsphinx_prolog = """
+{% set docname = env.doc2path(env.docname, base=None) %}
+
+.. note::
+   This page was generated from a Jupyter notebook.
+   :download:`Download the notebook <{{ docname }}>`
+"""

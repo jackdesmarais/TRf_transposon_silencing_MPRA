@@ -27,6 +27,15 @@ jobs:
           pip install -e ".[docs]"
           pip freeze  # Debug: show all installed packages
 
+      - name: Setup documentation structure
+        run: |
+          # Create notebooks directory in docs
+          mkdir -p docs/source/notebooks
+          # Copy notebooks
+          cp graphing_notebooks/*.ipynb docs/source/notebooks/
+          # Debug: List contents to verify
+          ls -la docs/source/notebooks/
+
       - name: Build docs
         run: |
           # Debug: Print current directory and its contents
