@@ -30,11 +30,7 @@ extensions = [
 ]
 
 # Source parsers and suffixes
-source_suffix = {
-    '.rst': 'restructuredtext',
-    '.md': 'markdown',
-    '.ipynb': 'nbsphinx',
-}
+source_suffix = ['.rst', '.md']
 
 # Paths setup
 templates_path = ['_templates']
