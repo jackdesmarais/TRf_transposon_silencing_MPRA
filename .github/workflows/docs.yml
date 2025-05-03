@@ -34,7 +34,7 @@ jobs:
           pwd
           ls -la
           # Debug: Print Python path and try to import the package
-          python -c "import sys; print('Python path:', sys.path); import library_analyzer; print('Package location:', library_analyzer.__file__); from library_analyzer import Library; print('Library class location:', Library.__file__)"
+          python -c "import sys; print('Python path:', sys.path); import library_analyzer; print('Package location:', library_analyzer.__file__); from library_analyzer import Library; print('Library class location:', Library.__module__)"
           cd docs
           make clean
           # Generate API documentation
