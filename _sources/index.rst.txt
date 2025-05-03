@@ -10,7 +10,7 @@ Examples
 ========
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Example Notebooks:
 
    notebooks
@@ -19,7 +19,7 @@ API Documentation
 =================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 6
    :caption: Contents:
 
    modules

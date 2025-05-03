@@ -87,7 +87,11 @@
 <h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h3>
 <section id="using-pip">
 <h4>Using pip<a class="headerlink" href="#using-pip" title="Permalink to this heading"></a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install base package</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clone repo</span>
+git<span class="w"> </span>clone<span class="w"> </span>git@github.com:jackdesmarais/TRf_transposon_silencing_MPRA.git
+<span class="nb">cd</span><span class="w"> </span>TRf_transposon_silencing_MPRA
+
+<span class="c1"># Install base package</span>
 pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 
 <span class="c1"># Install with dependencies for compiling the docs</span>
@@ -173,8 +177,30 @@ https://jackdesmarais.github.io/TRf_transposon_silencing_MPRA/</p>
 <p class="caption" role="heading"><span class="caption-text">Example Notebooks:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Example Notebooks</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notebooks.html#data-processing">Data Processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notebooks.html#figure-generation">Figure Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks.html#data-processing">Data Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/process_data_to_library.html">Process data into library form</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks.html#figure-generation">Figure Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/make_figure_panels.html">Make main text figures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/make_figure_panels.html#Setup-plotting-defaults">Setup plotting defaults</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/make_figure_panels.html#Load-data">Load data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/make_figure_panels.html#Make-MAVENN-heatmap">Make MAVENN heatmap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/make_figure_panels.html#Make-all-points-panel">Make all points panel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/make_figure_panels.html#Make-region-stratification-plot">Make region stratification plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/make_figure_panels.html#make-the-mutation-number-panel">make the mutation number panel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/make_figure_panels.html#Make-sliding-window-panel">Make sliding window panel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/make_figure_panels.html#Make-the-mutant-number-region-panel">Make the mutant number region panel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/make_supplemental_figures.html">Make supplemental figures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/make_supplemental_figures.html#Make-library-skew-figures">Make library skew figures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/make_supplemental_figures.html#Make-replicate-correspondence-figures">Make replicate correspondence figures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/make_supplemental_figures.html#Make-pooled-correspondence-figures">Make pooled correspondence figures</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
