@@ -15,19 +15,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Set up Conda
+        uses: conda-incubator/setup-miniconda@v3
         with:
           python-version: '3.9'
+          channels: conda-forge,defaults
+          channel-priority: strict
+          activate-environment: docs-env
           
       - name: Install dependencies
+        shell: bash -l {0}
         run: |
+          conda install -y pandoc
           python -m pip install --upgrade pip
-          # Install the package in editable mode with all dependencies
           pip install -e ".[docs]"
           pip freeze  # Debug: show all installed packages
 
       - name: Setup documentation structure
+        shell: bash -l {0}
         run: |
           # Create notebooks directory in docs
           mkdir -p docs/source/notebooks
@@ -37,6 +42,7 @@ jobs:
           ls -la docs/source/notebooks/
 
       - name: Build docs
+        shell: bash -l {0}
         run: |
           # Debug: Print current directory and its contents
           pwd
