@@ -25,15 +25,19 @@ jobs:
       - name: Build docs
         shell: bash -l {0}
         env:
-          PYTHONPATH: ${{ github.workspace }}:${{ github.workspace }}/library_analyzer
+          PYTHONPATH: ${{ github.workspace }}
         run: |
           conda activate transposon_silencing
+          # Debug: Print current directory and its contents
+          pwd
+          ls -la
+          # Debug: Print Python path and try to import the package
+          python -c "import sys; print('Python path:', sys.path); import library_analyzer; print('Package location:', library_analyzer.__file__)"
           cd docs
           make clean
           # Generate API documentation
           sphinx-apidoc -f -o source ../library_analyzer/
-          python -c "import sys; print('Python path:', sys.path)"  # Debug Python path
-          make html SPHINXOPTS="-v"  # Verbose output for debugging
+          make html SPHINXOPTS="-vvv"  # More verbose output for debugging
           # Debug: show the contents of the build directory
           ls -R build/html
           

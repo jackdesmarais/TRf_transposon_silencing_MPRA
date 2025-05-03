@@ -5,7 +5,11 @@
 
 import os
 import sys
+
+# Add the project root directory to the Python path
 sys.path.insert(0, os.path.abspath('../..'))
+# Add the library_analyzer directory specifically
+sys.path.insert(0, os.path.abspath('../../library_analyzer'))
 
 
 # -- Project information -----------------------------------------------------
@@ -57,7 +61,9 @@ autodoc_default_options = {
     'member-order': 'bysource',
     'special-members': '__init__',
     'undoc-members': True,
-    'exclude-members': '__weakref__'
+    'exclude-members': '__weakref__',
+    'show-inheritance': True,
+    'inherited-members': True
 }
 
 # Napoleon settings
@@ -65,6 +71,7 @@ napoleon_google_docstring = True
 napoleon_numpy_docstring = True
 napoleon_include_init_with_doc = True
 napoleon_include_private_with_doc = True
+napoleon_attr_annotations = True
 
 # Make sure the master doc is index
 master_doc = 'index'
@@ -91,3 +98,11 @@ source_parsers = {
 
 # Explicitly exclude setup.py from autodoc
 autodoc_exclude_modules = ['setup']
+
+# Add type hints
+autodoc_typehints = 'both'
+autodoc_typehints_description_target = 'documented'
+autodoc_type_aliases = {}
+
+# Show class and module docstrings
+autoclass_content = 'both'
