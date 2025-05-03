@@ -8,6 +8,10 @@ This repository contains the code for analyzing the TRf transposon PBS MPRA data
 
 ### Using pip
 ```bash
+# Clone repo
+git clone git@github.com:jackdesmarais/TRf_transposon_silencing_MPRA.git
+cd TRf_transposon_silencing_MPRA
+
 # Install base package
 pip install -e .
 
