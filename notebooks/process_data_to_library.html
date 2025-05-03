@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Process data into library form &mdash; Library Analyzer v0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Make main text figures" href="make_figure_panels.html" />
+    <link rel="prev" title="Example Notebooks" href="../notebooks.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Library Analyzer
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Example Notebooks:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../notebooks.html">Example Notebooks</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../notebooks.html#data-processing">Data Processing</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Process data into library form</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks.html#figure-generation">Figure Generation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">library_analyzer</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Library Analyzer</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../notebooks.html">Example Notebooks</a></li>
+      <li class="breadcrumb-item active">Process data into library form</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notebooks/process_data_to_library.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This page was generated from a Jupyter notebook.
+<code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">the</span> <span class="pre">notebook</span></code></p>
+</div>
+<section id="Process-data-into-library-form">
+<h1>Process data into library form<a class="headerlink" href="#Process-data-into-library-form" title="Permalink to this heading"></a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">library_analyzer</span><span class="w"> </span><span class="kn">import</span> <span class="n">Library</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">replicates</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pool1_RNA1500&#39;</span><span class="p">:[</span><span class="s1">&#39;pool1_DNA&#39;</span><span class="p">,</span> <span class="s1">&#39;pool1_RNA1500&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;pool2_RNA1500&#39;</span><span class="p">:[</span><span class="s1">&#39;pool2_DNA&#39;</span><span class="p">,</span><span class="s1">&#39;pool2_RNA1500&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;pool3_RNA1500&#39;</span><span class="p">:[</span><span class="s1">&#39;pool3_DNA&#39;</span><span class="p">,</span><span class="s1">&#39;pool3_RNA1500&#39;</span><span class="p">],</span>
+
+              <span class="s1">&#39;pool1_RNA500&#39;</span><span class="p">:[</span><span class="s1">&#39;pool1_DNA&#39;</span><span class="p">,</span> <span class="s1">&#39;pool1_RNA500&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;pool2_RNA500&#39;</span><span class="p">:[</span><span class="s1">&#39;pool2_DNA&#39;</span><span class="p">,</span><span class="s1">&#39;pool2_RNA500&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;pool3_RNA500&#39;</span><span class="p">:[</span><span class="s1">&#39;pool3_DNA&#39;</span><span class="p">,</span><span class="s1">&#39;pool3_RNA500&#39;</span><span class="p">],</span>
+
+              <span class="s1">&#39;pool1_RNA250&#39;</span><span class="p">:[</span><span class="s1">&#39;pool1_DNA&#39;</span><span class="p">,</span> <span class="s1">&#39;pool1_RNA250&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;pool2_RNA250&#39;</span><span class="p">:[</span><span class="s1">&#39;pool2_DNA&#39;</span><span class="p">,</span><span class="s1">&#39;pool2_RNA250&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;pool3_RNA250&#39;</span><span class="p">:[</span><span class="s1">&#39;pool3_DNA&#39;</span><span class="p">,</span><span class="s1">&#39;pool3_RNA250&#39;</span><span class="p">],</span>
+            <span class="p">}</span>
+
+<span class="n">id_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span>
+<span class="n">group_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sequence&#39;</span><span class="p">]</span>
+<span class="n">rate_method</span> <span class="o">=</span> <span class="s1">&#39;l10fc&#39;</span>
+<span class="n">alphabet</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;G&#39;</span><span class="p">,</span><span class="s1">&#39;T&#39;</span><span class="p">]</span>
+<span class="n">WT_seq</span> <span class="o">=</span> <span class="s1">&#39;TGGCGCCCGAACAGGGACCTGA&#39;</span>
+<span class="n">process_call</span> <span class="o">=</span> <span class="s1">&#39;category&#39;</span>
+<span class="n">name_regex</span> <span class="o">=</span> <span class="s1">&#39;(?P&lt;sequence&gt;[ATCG]*)_(?:fillmd_)?&#39;</span>
+<span class="n">data_file</span> <span class="o">=</span> <span class="s1">&#39;../data/original/allNOindel_1PBS_seq_MPRA.count.tsv&#39;</span>
+
+<span class="n">lib</span> <span class="o">=</span> <span class="n">Library</span><span class="o">.</span><span class="n">build_from_reads</span><span class="p">(</span><span class="n">data_file</span><span class="p">,</span><span class="n">replicates</span><span class="p">,</span> <span class="n">id_cols</span><span class="p">,</span> <span class="n">group_cols</span><span class="p">,</span>
+                               <span class="n">rate_method</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">,</span> <span class="n">WT_seq</span><span class="p">,</span> <span class="n">process_call</span><span class="p">,</span> <span class="n">name_regex</span><span class="p">,</span>
+                               <span class="n">sheet_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">data_df</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="9" halign="left">FC</th>
+      <th>l10fc</th>
+      <th>...</th>
+      <th colspan="2" halign="left">pool3_RNA1500_counts</th>
+      <th colspan="2" halign="left">pool3_RNA250_abundance</th>
+      <th colspan="2" halign="left">pool3_RNA250_counts</th>
+      <th colspan="2" halign="left">pool3_RNA500_abundance</th>
+      <th colspan="2" halign="left">pool3_RNA500_counts</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>pool1_RNA1500</th>
+      <th>pool1_RNA250</th>
+      <th>pool1_RNA500</th>
+      <th>pool2_RNA1500</th>
+      <th>pool2_RNA250</th>
+      <th>pool2_RNA500</th>
+      <th>pool3_RNA1500</th>
+      <th>pool3_RNA250</th>
+      <th>pool3_RNA500</th>
+      <th>pool1_RNA1500</th>
+      <th>...</th>
+      <th>pool3_DNA</th>
+      <th>pool3_RNA1500</th>
+      <th>pool3_DNA</th>
+      <th>pool3_RNA250</th>
+      <th>pool3_DNA</th>
+      <th>pool3_RNA250</th>
+      <th>pool3_DNA</th>
+      <th>pool3_RNA500</th>
+      <th>pool3_DNA</th>
+      <th>pool3_RNA500</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.997397</td>
+      <td>0.976051</td>
+      <td>1.027227</td>
+      <td>1.018442</td>
+      <td>0.976679</td>
+      <td>0.925284</td>
+      <td>1.044087</td>
+      <td>1.026154</td>
+      <td>1.019378</td>
+      <td>-0.001132</td>
+      <td>...</td>
+      <td>1415</td>
+      <td>1754</td>
+      <td>0.000495</td>
+      <td>0.000508</td>
+      <td>1415</td>
+      <td>1903</td>
+      <td>0.000495</td>
+      <td>0.000504</td>
+      <td>1415</td>
+      <td>1851</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.079934</td>
+      <td>1.013920</td>
+      <td>0.978996</td>
+      <td>1.038868</td>
+      <td>1.057060</td>
+      <td>1.056795</td>
+      <td>1.033777</td>
+      <td>1.190631</td>
+      <td>1.050082</td>
+      <td>0.033397</td>
+      <td>...</td>
+      <td>1456</td>
+      <td>1787</td>
+      <td>0.000509</td>
+      <td>0.000606</td>
+      <td>1456</td>
+      <td>2272</td>
+      <td>0.000509</td>
+      <td>0.000535</td>
+      <td>1456</td>
+      <td>1962</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.860390</td>
+      <td>0.846655</td>
+      <td>0.803595</td>
+      <td>0.834094</td>
+      <td>0.947096</td>
+      <td>0.900402</td>
+      <td>0.912680</td>
+      <td>0.828897</td>
+      <td>0.858133</td>
+      <td>-0.065305</td>
+      <td>...</td>
+      <td>1077</td>
+      <td>1167</td>
+      <td>0.000377</td>
+      <td>0.000312</td>
+      <td>1077</td>
+      <td>1170</td>
+      <td>0.000377</td>
+      <td>0.000323</td>
+      <td>1077</td>
+      <td>1186</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.992911</td>
+      <td>0.938393</td>
+      <td>0.986526</td>
+      <td>0.897911</td>
+      <td>0.925627</td>
+      <td>0.934002</td>
+      <td>0.938179</td>
+      <td>0.903441</td>
+      <td>0.922157</td>
+      <td>-0.003090</td>
+      <td>...</td>
+      <td>1467</td>
+      <td>1634</td>
+      <td>0.000513</td>
+      <td>0.000464</td>
+      <td>1467</td>
+      <td>1737</td>
+      <td>0.000513</td>
+      <td>0.000473</td>
+      <td>1467</td>
+      <td>1736</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.954473</td>
+      <td>0.988999</td>
+      <td>0.910971</td>
+      <td>1.016378</td>
+      <td>0.999219</td>
+      <td>1.018437</td>
+      <td>1.016067</td>
+      <td>0.931980</td>
+      <td>1.016241</td>
+      <td>-0.020236</td>
+      <td>...</td>
+      <td>1585</td>
+      <td>1912</td>
+      <td>0.000554</td>
+      <td>0.000517</td>
+      <td>1585</td>
+      <td>1936</td>
+      <td>0.000554</td>
+      <td>0.000563</td>
+      <td>1585</td>
+      <td>2067</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1773</th>
+      <td>0.655575</td>
+      <td>0.747709</td>
+      <td>0.660232</td>
+      <td>0.795508</td>
+      <td>0.791365</td>
+      <td>0.819845</td>
+      <td>0.780929</td>
+      <td>0.748542</td>
+      <td>0.797153</td>
+      <td>-0.183378</td>
+      <td>...</td>
+      <td>1002</td>
+      <td>929</td>
+      <td>0.000350</td>
+      <td>0.000262</td>
+      <td>1002</td>
+      <td>983</td>
+      <td>0.000350</td>
+      <td>0.000279</td>
+      <td>1002</td>
+      <td>1025</td>
+    </tr>
+    <tr>
+      <th>1774</th>
+      <td>1.094250</td>
+      <td>1.078073</td>
+      <td>1.100718</td>
+      <td>1.022845</td>
+      <td>1.007771</td>
+      <td>1.050011</td>
+      <td>1.087492</td>
+      <td>1.099067</td>
+      <td>1.076720</td>
+      <td>0.039117</td>
+      <td>...</td>
+      <td>1192</td>
+      <td>1539</td>
+      <td>0.000417</td>
+      <td>0.000458</td>
+      <td>1192</td>
+      <td>1717</td>
+      <td>0.000417</td>
+      <td>0.000449</td>
+      <td>1192</td>
+      <td>1647</td>
+    </tr>
+    <tr>
+      <th>1775</th>
+      <td>0.642220</td>
+      <td>0.610603</td>
+      <td>0.552422</td>
+      <td>0.524283</td>
+      <td>0.508443</td>
+      <td>0.501996</td>
+      <td>0.611003</td>
+      <td>0.694664</td>
+      <td>0.585880</td>
+      <td>-0.192316</td>
+      <td>...</td>
+      <td>681</td>
+      <td>494</td>
+      <td>0.000238</td>
+      <td>0.000165</td>
+      <td>681</td>
+      <td>620</td>
+      <td>0.000238</td>
+      <td>0.000140</td>
+      <td>681</td>
+      <td>512</td>
+    </tr>
+    <tr>
+      <th>1776</th>
+      <td>0.856314</td>
+      <td>0.829520</td>
+      <td>0.919919</td>
+      <td>0.907944</td>
+      <td>0.896126</td>
+      <td>0.866773</td>
+      <td>0.905077</td>
+      <td>0.871724</td>
+      <td>0.864594</td>
+      <td>-0.067367</td>
+      <td>...</td>
+      <td>1516</td>
+      <td>1629</td>
+      <td>0.000530</td>
+      <td>0.000462</td>
+      <td>1516</td>
+      <td>1732</td>
+      <td>0.000530</td>
+      <td>0.000458</td>
+      <td>1516</td>
+      <td>1682</td>
+    </tr>
+    <tr>
+      <th>1777</th>
+      <td>1.136788</td>
+      <td>1.182251</td>
+      <td>1.166507</td>
+      <td>1.119280</td>
+      <td>1.093036</td>
+      <td>1.097129</td>
+      <td>1.119409</td>
+      <td>1.100817</td>
+      <td>1.130600</td>
+      <td>0.055679</td>
+      <td>...</td>
+      <td>1231</td>
+      <td>1636</td>
+      <td>0.000431</td>
+      <td>0.000474</td>
+      <td>1231</td>
+      <td>1776</td>
+      <td>0.000431</td>
+      <td>0.000487</td>
+      <td>1231</td>
+      <td>1786</td>
+    </tr>
+  </tbody>
+</table>
+<p>1778 rows × 56 columns</p>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;../data/processed/allNOindel_1PBS_seq_MPRA.lib.pkl&#39;</span><span class="p">)</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">data_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../data/processed/allNOindel_1PBS_seq_MPRA.processed.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../notebooks.html" class="btn btn-neutral float-left" title="Example Notebooks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="make_figure_panels.html" class="btn btn-neutral float-right" title="Make main text figures" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, John J Desmarais.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -21,4 +21,5 @@ Figure Generation
    notebooks/make_supplemental_figures.ipynb
 
 .. note::
-   These notebooks are provided as examples and are not executed during documentation build. 
+   These notebooks are provided as examples and are not executed during documentation build.
+   The notebooks demonstrate various analysis workflows and figure generation techniques. 
