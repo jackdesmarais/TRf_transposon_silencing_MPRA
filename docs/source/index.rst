@@ -6,8 +6,17 @@ Welcome to Library Analyzer's documentation!
 .. include:: ../../readme.md
    :parser: myst_parser.sphinx_
 
-Contents
+Examples
 ========
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Example Notebooks:
+
+   notebooks
+
+API Documentation
+=================
 
 .. toctree::
    :maxdepth: 4

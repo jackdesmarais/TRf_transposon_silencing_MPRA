@@ -15,6 +15,8 @@ docs_require = [
     "sphinx==5.0.2",
     "sphinx_rtd_theme",
     "myst-parser",
+    "nbsphinx",  # For rendering Jupyter notebooks
+    "ipython",   # Required by nbsphinx
 ]
 
 # Optional requirements for development

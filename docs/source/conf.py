@@ -6,6 +6,7 @@
 import os
 import sys
 import library_analyzer
+sys.path.insert(0, os.path.abspath('../..'))
 
 
 # -- Project information -----------------------------------------------------
@@ -24,7 +25,9 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
+    'sphinx.ext.mathjax',
     'myst_parser',
+    'nbsphinx',
 ]
 
 # Source parsers and suffixes
@@ -35,7 +38,7 @@ source_suffix = {
 
 # Paths setup
 templates_path = ['_templates']
-exclude_patterns = ['setup.py', '**/setup.py']
+exclude_patterns = ['setup.py', '**/setup.py', '_build', '**.ipynb_checkpoints']
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -67,7 +70,14 @@ napoleon_google_docstring = True
 napoleon_numpy_docstring = True
 napoleon_include_init_with_doc = True
 napoleon_include_private_with_doc = True
-napoleon_attr_annotations = True
+napoleon_include_special_with_doc = True
+napoleon_use_admonition_for_examples = True
+napoleon_use_admonition_for_notes = True
+napoleon_use_admonition_for_references = True
+napoleon_use_ivar = True
+napoleon_use_param = True
+napoleon_use_rtype = True
+napoleon_type_aliases = None
 
 # Make sure the master doc is index
 master_doc = 'index'
@@ -102,3 +112,7 @@ autodoc_type_aliases = {}
 
 # Show class and module docstrings
 autoclass_content = 'both'
+
+# Configure nbsphinx
+nbsphinx_execute = 'never'
+nbsphinx_allow_errors = True
