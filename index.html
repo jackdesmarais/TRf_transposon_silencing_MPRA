@@ -81,23 +81,90 @@
 <h1>Welcome to Library Analyzer’s documentation!<a class="headerlink" href="#welcome-to-library-analyzer-s-documentation" title="Permalink to this heading"></a></h1>
 <section class="tex2jax_ignore mathjax_ignore" id="trf-transposon-silencing-mpra">
 <h2>TRf transposon silencing MPRA<a class="headerlink" href="#trf-transposon-silencing-mpra" title="Permalink to this heading"></a></h2>
-<p>This repository contains the code for the analyzing the TRf transposon PBS MPRA data and generating the figures for the paper.</p>
+<p>This repository contains the code for analyzing the TRf transposon PBS MPRA data and generating the figures for the paper.</p>
+<p><a class="reference external" href="https://jackdesmarais.github.io/TRf_transposon_silencing_MPRA/"><img alt="Documentation Status" src="https://github.com/jackdesmarais/TRf_transposon_silencing_MPRA/actions/workflows/docs.yml/badge.svg" /></a></p>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h3>
+<section id="using-pip">
+<h4>Using pip<a class="headerlink" href="#using-pip" title="Permalink to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install base package</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+
+<span class="c1"># Install with dependencies for compiling the docs</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[docs]&quot;</span>
+
+<span class="c1"># Install with dependencies for running graphing notebooks</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[notebooks]&quot;</span>
+
+<span class="c1"># Install all dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[all]&quot;</span>
+</pre></div>
+</div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
-<p>Filller Filler lorum ipsum</p>
+<section id="using-conda">
+<h4>Using conda<a class="headerlink" href="#using-conda" title="Permalink to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and activate environment</span>
+git<span class="w"> </span>clone<span class="w"> </span>git@github.com:jackdesmarais/TRf_transposon_silencing_MPRA.git
+<span class="nb">cd</span><span class="w"> </span>TRf_transposon_silencing_MPRA
+conda<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>./graph_env.yml
+conda<span class="w"> </span>activate<span class="w"> </span>TRf_transposon_silencing_MPRA
+</pre></div>
+</div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
-<p>Filller Filler lorum ipsum</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="contributing">
-<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this heading"></a></h2>
-<p>Filller Filler lorum ipsum</p>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h3>
+<p>The package provides tools for analyzing MPRA library data and generating figures. See the <a class="reference external" href="https://jackdesmarais.github.io/TRf_transposon_silencing_MPRA/">full documentation</a> for detailed API reference and examples.</p>
+<section id="generate-a-library-from-reads">
+<h4>Generate a library from reads<a class="headerlink" href="#generate-a-library-from-reads" title="Permalink to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">library_analyzer</span><span class="w"> </span><span class="kn">import</span> <span class="n">Library</span>
+
+<span class="n">replicates</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pool1_RNA1500&#39;</span><span class="p">:[</span><span class="s1">&#39;pool1_DNA&#39;</span><span class="p">,</span> <span class="s1">&#39;pool1_RNA1500&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;pool2_RNA1500&#39;</span><span class="p">:[</span><span class="s1">&#39;pool2_DNA&#39;</span><span class="p">,</span><span class="s1">&#39;pool2_RNA1500&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;pool3_RNA1500&#39;</span><span class="p">:[</span><span class="s1">&#39;pool3_DNA&#39;</span><span class="p">,</span><span class="s1">&#39;pool3_RNA1500&#39;</span><span class="p">],</span>
+
+              <span class="s1">&#39;pool1_RNA500&#39;</span><span class="p">:[</span><span class="s1">&#39;pool1_DNA&#39;</span><span class="p">,</span> <span class="s1">&#39;pool1_RNA500&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;pool2_RNA500&#39;</span><span class="p">:[</span><span class="s1">&#39;pool2_DNA&#39;</span><span class="p">,</span><span class="s1">&#39;pool2_RNA500&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;pool3_RNA500&#39;</span><span class="p">:[</span><span class="s1">&#39;pool3_DNA&#39;</span><span class="p">,</span><span class="s1">&#39;pool3_RNA500&#39;</span><span class="p">],</span>
+
+              <span class="s1">&#39;pool1_RNA250&#39;</span><span class="p">:[</span><span class="s1">&#39;pool1_DNA&#39;</span><span class="p">,</span> <span class="s1">&#39;pool1_RNA250&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;pool2_RNA250&#39;</span><span class="p">:[</span><span class="s1">&#39;pool2_DNA&#39;</span><span class="p">,</span><span class="s1">&#39;pool2_RNA250&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;pool3_RNA250&#39;</span><span class="p">:[</span><span class="s1">&#39;pool3_DNA&#39;</span><span class="p">,</span><span class="s1">&#39;pool3_RNA250&#39;</span><span class="p">],</span>
+            <span class="p">}</span>
+
+<span class="n">id_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span>
+<span class="n">group_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sequence&#39;</span><span class="p">]</span>
+<span class="n">rate_method</span> <span class="o">=</span> <span class="s1">&#39;l10fc&#39;</span>
+<span class="n">alphabet</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;G&#39;</span><span class="p">,</span><span class="s1">&#39;T&#39;</span><span class="p">]</span>
+<span class="n">WT_seq</span> <span class="o">=</span> <span class="s1">&#39;TGGCGCCCGAACAGGGACCTGA&#39;</span>
+<span class="n">process_call</span> <span class="o">=</span> <span class="s1">&#39;category&#39;</span>
+<span class="n">name_regex</span> <span class="o">=</span> <span class="s1">&#39;(?P&lt;sequence&gt;[ATCG]*)_(?:fillmd_)?&#39;</span>
+<span class="n">data_file</span> <span class="o">=</span> <span class="s1">&#39;../data/original/allNOindel_1PBS_seq_MPRA.count.tsv&#39;</span>
+
+<span class="n">lib</span> <span class="o">=</span> <span class="n">Library</span><span class="o">.</span><span class="n">build_from_reads</span><span class="p">(</span><span class="n">data_file</span><span class="p">,</span><span class="n">replicates</span><span class="p">,</span> <span class="n">id_cols</span><span class="p">,</span> <span class="n">group_cols</span><span class="p">,</span>
+                               <span class="n">rate_method</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">,</span> <span class="n">WT_seq</span><span class="p">,</span> <span class="n">process_call</span><span class="p">,</span> <span class="n">name_regex</span><span class="p">,</span>
+                               <span class="n">sheet_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="n">lib</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;../data/processed/allNOindel_1PBS_seq_MPRA.lib.pkl&#39;</span><span class="p">)</span>
+<span class="n">lib</span><span class="o">.</span><span class="n">data_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../data/processed/allNOindel_1PBS_seq_MPRA.processed.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
-<p>Filller Filler lorum ipsum</p>
+<section id="example-notebooks">
+<h4>Example Notebooks<a class="headerlink" href="#example-notebooks" title="Permalink to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">graphing_notebooks</span></code> directory contains Jupyter notebooks demonstrating the analysis workflow:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">process_data_to_library.ipynb</span></code>: Data processing pipeline</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make_figure_panels.ipynb</span></code>: Main figure generation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make_supplemental_figures.ipynb</span></code>: Supplementary figure generation</p></li>
+</ul>
+</section>
+</section>
+<section id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading"></a></h3>
+<p>Full documentation, including API reference and example notebooks, is available at:
+https://jackdesmarais.github.io/TRf_transposon_silencing_MPRA/</p>
+</section>
 </section>
 </section>
 <section id="examples">
