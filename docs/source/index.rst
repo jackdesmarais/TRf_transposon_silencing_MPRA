@@ -1,4 +1,4 @@
-.. Library Analyzer documentation master file, created on Fri May 02 15:02 2025.
+.. Library Analyzer documentation master file
 
 Welcome to Library Analyzer's documentation!
 ============================================

@@ -25,6 +25,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
     'myst_parser',
+    'sphinx.ext.intersphinx',
 ]
 
 templates_path = ['_templates']
@@ -39,7 +40,9 @@ html_static_path = ['_static']
 # Configure MyST-Parser
 myst_enable_extensions = [
     "colon_fence",
-    "deflist"
+    "deflist",
+    "fieldlist",
+    "tasklist",
 ]
 
 source_suffix = {
@@ -56,5 +59,25 @@ autodoc_default_options = {
     'exclude-members': '__weakref__'
 }
 
+# Napoleon settings for better docstring support
+napoleon_google_docstring = True
+napoleon_numpy_docstring = True
+napoleon_include_init_with_doc = True
+napoleon_include_private_with_doc = True
+
 # Make sure the master doc is index
 master_doc = 'index'
+
+# Enable markdown files to include other markdown files
+myst_enable_extensions = [
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "html_admonition",
+    "html_image",
+    "replacements",
+    "smartquotes",
+    "substitution",
+    "tasklist",
+]
