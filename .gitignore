@@ -2,3 +2,4 @@ data/
 figure_panels/
 docs/build/
 library_analyzer/__pycache__/
+library_analyzer.egg-info/
