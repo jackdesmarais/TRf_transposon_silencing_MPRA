@@ -46,9 +46,28 @@
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">library_analyzer</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">library_analyzer package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#library-analyzer-library-analyzer-module">library_analyzer.library_analyzer module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#library-analyzer-utils-module">library_analyzer.utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-library_analyzer.core">library_analyzer.core module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#library_analyzer.core.make_density"><code class="docutils literal notranslate"><span class="pre">make_density()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#library_analyzer.core.line_plotter"><code class="docutils literal notranslate"><span class="pre">line_plotter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#library_analyzer.core.correspondance_plotter"><code class="docutils literal notranslate"><span class="pre">correspondance_plotter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#library_analyzer.core.density_scatter"><code class="docutils literal notranslate"><span class="pre">density_scatter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#library_analyzer.core.OLS_plotter"><code class="docutils literal notranslate"><span class="pre">OLS_plotter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#library_analyzer.core.gini"><code class="docutils literal notranslate"><span class="pre">gini()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#library_analyzer.core.multi_gini"><code class="docutils literal notranslate"><span class="pre">multi_gini()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#library_analyzer.core.depth_plot"><code class="docutils literal notranslate"><span class="pre">depth_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#library_analyzer.core.thresh_collapse"><code class="docutils literal notranslate"><span class="pre">thresh_collapse()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#library_analyzer.core.Library"><code class="docutils literal notranslate"><span class="pre">Library</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-library_analyzer.utils">library_analyzer.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#library_analyzer.utils.PlottingContext"><code class="docutils literal notranslate"><span class="pre">PlottingContext</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-library_analyzer">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#library_analyzer.Library"><code class="docutils literal notranslate"><span class="pre">Library</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#library_analyzer.PlottingContext"><code class="docutils literal notranslate"><span class="pre">PlottingContext</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -85,14 +104,1078 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
-<section id="library-analyzer-library-analyzer-module">
-<h2>library_analyzer.library_analyzer module<a class="headerlink" href="#library-analyzer-library-analyzer-module" title="Link to this heading"></a></h2>
+<section id="module-library_analyzer.core">
+<span id="library-analyzer-core-module"></span><h2>library_analyzer.core module<a class="headerlink" href="#module-library_analyzer.core" title="Link to this heading"></a></h2>
+<p>Library analysis module for MPRA data.</p>
+<p>This module provides functions and classes for analyzing MPRA library data, including:
+- Statistical analysis functions
+- Plotting utilities
+- Library class for managing MPRA datasets</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="library_analyzer.core.make_density">
+<span class="sig-prename descclassname"><span class="pre">library_analyzer.core.</span></span><span class="sig-name descname"><span class="pre">make_density</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#make_density"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.make_density" title="Link to this definition"></a></dt>
+<dd><p>Calculate kernel density estimate for array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>array-like</em>) – Input array</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Density estimates for input values</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="library_analyzer.core.line_plotter">
+<span class="sig-prename descclassname"><span class="pre">library_analyzer.core.</span></span><span class="sig-name descname"><span class="pre">line_plotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#line_plotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.line_plotter" title="Link to this definition"></a></dt>
+<dd><p>Plot line through points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array-like</em>) – x coordinates</p></li>
+<li><p><strong>y</strong> (<em>array-like</em>) – y coordinates</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments passed to plt.axline()</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="library_analyzer.core.correspondance_plotter">
+<span class="sig-prename descclassname"><span class="pre">library_analyzer.core.</span></span><span class="sig-name descname"><span class="pre">correspondance_plotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#correspondance_plotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.correspondance_plotter" title="Link to this definition"></a></dt>
+<dd><p>Plot correlation between x and y values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array-like</em>) – x coordinates</p></li>
+<li><p><strong>y</strong> (<em>array-like</em>) – y coordinates</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments passed to plotting functions</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="library_analyzer.core.density_scatter">
+<span class="sig-prename descclassname"><span class="pre">library_analyzer.core.</span></span><span class="sig-name descname"><span class="pre">density_scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#density_scatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.density_scatter" title="Link to this definition"></a></dt>
+<dd><p>Create density scatter plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array-like</em>) – x coordinates</p></li>
+<li><p><strong>y</strong> (<em>array-like</em>) – y coordinates</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments passed to sns.scatterplot()</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="library_analyzer.core.OLS_plotter">
+<span class="sig-prename descclassname"><span class="pre">library_analyzer.core.</span></span><span class="sig-name descname"><span class="pre">OLS_plotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ols_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#OLS_plotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.OLS_plotter" title="Link to this definition"></a></dt>
+<dd><p>Plot OLS regression line with confidence intervals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array-like</em>) – x coordinates</p></li>
+<li><p><strong>y</strong> (<em>array-like</em>) – y coordinates</p></li>
+<li><p><strong>ols_model</strong> (<em>statsmodels.regression.linear_model.RegressionResultsWrapper</em><em>, </em><em>optional</em>) – Pre-fit OLS model</p></li>
+<li><p><strong>**kwargs</strong> – Additional arguments passed to plt.plot()</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="library_analyzer.core.gini">
+<span class="sig-prename descclassname"><span class="pre">library_analyzer.core.</span></span><span class="sig-name descname"><span class="pre">gini</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sorted_arr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#gini"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.gini" title="Link to this definition"></a></dt>
+<dd><p>Calculate Gini coefficient for sorted array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sorted_arr</strong> (<em>array-like</em>) – Sorted input array</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Gini coefficient</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="library_analyzer.core.multi_gini">
+<span class="sig-prename descclassname"><span class="pre">library_analyzer.core.</span></span><span class="sig-name descname"><span class="pre">multi_gini</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Library</span> <span class="pre">skew'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scatter_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#multi_gini"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.multi_gini" title="Link to this definition"></a></dt>
+<dd><p>Plot Lorenz curves and calculate Gini coefficients for multiple arrays.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xs</strong> (<em>list</em>) – List of arrays to analyze</p></li>
+<li><p><strong>labels</strong> (<em>list</em>) – Labels for each array</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – Plot title. Defaults to ‘Library skew’.</p></li>
+<li><p><strong>scatter_kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Additional arguments passed to plt.scatter()</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(list of Gini coefficients, matplotlib figure)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="library_analyzer.core.depth_plot">
+<span class="sig-prename descclassname"><span class="pre">library_analyzer.core.</span></span><span class="sig-name descname"><span class="pre">depth_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Library</span> <span class="pre">depth'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#depth_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.depth_plot" title="Link to this definition"></a></dt>
+<dd><p>Plot read depth distributions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xs</strong> (<em>list</em>) – List of arrays containing read counts</p></li>
+<li><p><strong>labels</strong> (<em>list</em>) – Labels for each array</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – Plot title. Defaults to ‘Library depth’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(figure with read counts, figure with read fractions)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="library_analyzer.core.thresh_collapse">
+<span class="sig-prename descclassname"><span class="pre">library_analyzer.core.</span></span><span class="sig-name descname"><span class="pre">thresh_collapse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#thresh_collapse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.thresh_collapse" title="Link to this definition"></a></dt>
+<dd><p>Calculate fraction of values above threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array-like</em>) – Input array</p></li>
+<li><p><strong>thresh</strong> (<em>float</em><em>, </em><em>optional</em>) – Threshold value. Defaults to -0.5.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Fraction of values above threshold</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="library_analyzer.core.Library">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">library_analyzer.core.</span></span><span class="sig-name descname"><span class="pre">Library</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">WT_seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness_measure</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.Library" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for analyzing MPRA library data.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.data_df">
+<span class="sig-name descname"><span class="pre">data_df</span></span><a class="headerlink" href="#library_analyzer.core.Library.data_df" title="Link to this definition"></a></dt>
+<dd><p>Library data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.replicates">
+<span class="sig-name descname"><span class="pre">replicates</span></span><a class="headerlink" href="#library_analyzer.core.Library.replicates" title="Link to this definition"></a></dt>
+<dd><p>Replicate information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.id_cols">
+<span class="sig-name descname"><span class="pre">id_cols</span></span><a class="headerlink" href="#library_analyzer.core.Library.id_cols" title="Link to this definition"></a></dt>
+<dd><p>Column names for variant IDs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.group_cols">
+<span class="sig-name descname"><span class="pre">group_cols</span></span><a class="headerlink" href="#library_analyzer.core.Library.group_cols" title="Link to this definition"></a></dt>
+<dd><p>Column names for grouping variants</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.rate_method">
+<span class="sig-name descname"><span class="pre">rate_method</span></span><a class="headerlink" href="#library_analyzer.core.Library.rate_method" title="Link to this definition"></a></dt>
+<dd><p>Method for calculating rates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.alphabet">
+<span class="sig-name descname"><span class="pre">alphabet</span></span><a class="headerlink" href="#library_analyzer.core.Library.alphabet" title="Link to this definition"></a></dt>
+<dd><p>Valid characters in sequences</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.WT_seq">
+<span class="sig-name descname"><span class="pre">WT_seq</span></span><a class="headerlink" href="#library_analyzer.core.Library.WT_seq" title="Link to this definition"></a></dt>
+<dd><p>Wild-type sequence</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.fitness_measure">
+<span class="sig-name descname"><span class="pre">fitness_measure</span></span><a class="headerlink" href="#library_analyzer.core.Library.fitness_measure" title="Link to this definition"></a></dt>
+<dd><p>Column name for fitness values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>Initialize Library object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_df</strong> (<em>pandas.DataFrame</em>) – Library data</p></li>
+<li><p><strong>replicates</strong> (<em>dict</em>) – Replicate information</p></li>
+<li><p><strong>id_cols</strong> (<em>list</em>) – Column names for variant IDs</p></li>
+<li><p><strong>group_cols</strong> (<em>list</em>) – Column names for grouping variants</p></li>
+<li><p><strong>rate_method</strong> (<em>str</em>) – Method for calculating rates</p></li>
+<li><p><strong>alphabet</strong> (<em>list</em>) – Valid characters in sequences</p></li>
+<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence</p></li>
+<li><p><strong>fitness_measure</strong> (<em>str</em>) – Column name for fitness values</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">WT_seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness_measure</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.Library.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize Library object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_df</strong> (<em>pandas.DataFrame</em>) – Library data</p></li>
+<li><p><strong>replicates</strong> (<em>dict</em>) – Replicate information</p></li>
+<li><p><strong>id_cols</strong> (<em>list</em>) – Column names for variant IDs</p></li>
+<li><p><strong>group_cols</strong> (<em>list</em>) – Column names for grouping variants</p></li>
+<li><p><strong>rate_method</strong> (<em>str</em>) – Method for calculating rates</p></li>
+<li><p><strong>alphabet</strong> (<em>list</em>) – Valid characters in sequences</p></li>
+<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence</p></li>
+<li><p><strong>fitness_measure</strong> (<em>str</em>) – Column name for fitness values</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.build_from_reads">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">build_from_reads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">WT_seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_call</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_regex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.build_from_reads"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.Library.build_from_reads" title="Link to this definition"></a></dt>
+<dd><p>Build Library object from read count data file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_file</strong> (<em>str</em>) – Path to data file (.xlsx, .csv, or .tsv)</p></li>
+<li><p><strong>replicates</strong> (<em>dict</em>) – Replicate information</p></li>
+<li><p><strong>id_cols</strong> (<em>list</em>) – Column names for variant IDs</p></li>
+<li><p><strong>group_cols</strong> (<em>list</em>) – Column names for grouping variants</p></li>
+<li><p><strong>rate_method</strong> (<em>str</em>) – Method for calculating rates</p></li>
+<li><p><strong>alphabet</strong> (<em>list</em>) – Valid characters in sequences</p></li>
+<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence</p></li>
+<li><p><strong>process_call</strong> (<em>str</em>) – Column name for processing</p></li>
+<li><p><strong>name_regex</strong> (<em>str</em>) – Regex pattern for extracting names</p></li>
+<li><p><strong>sheet_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Excel sheet name. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New Library object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#library_analyzer.core.Library" title="library_analyzer.core.Library">Library</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If data_file is not .xlsx, .csv or .tsv</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.Library.save" title="Link to this definition"></a></dt>
+<dd><p>Save Library object to a pickle file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Path to save the library object</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If filename does not end in .pkl</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.load">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.Library.load" title="Link to this definition"></a></dt>
+<dd><p>Load Library object from a pickle file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Path to the library pickle file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Loaded Library object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#library_analyzer.core.Library" title="library_analyzer.core.Library">Library</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – If filename does not end in .pkl</p></li>
+<li><p><strong>ValueError</strong> – If loaded object is not a Library instance</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.fitness_frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fitness_frame</span></span><a class="headerlink" href="#library_analyzer.core.Library.fitness_frame" title="Link to this definition"></a></dt>
+<dd><p>Get fitness data frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Fitness values for each variant</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.rep_average_frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rep_average_frame</span></span><a class="headerlink" href="#library_analyzer.core.Library.rep_average_frame" title="Link to this definition"></a></dt>
+<dd><p>Get replicate-averaged fitness data frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mean and std of fitness values across replicates</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.group_average_frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">group_average_frame</span></span><a class="headerlink" href="#library_analyzer.core.Library.group_average_frame" title="Link to this definition"></a></dt>
+<dd><p>Get group-averaged fitness data frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mean and std of fitness values across groups</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.total_average_frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_average_frame</span></span><a class="headerlink" href="#library_analyzer.core.Library.total_average_frame" title="Link to this definition"></a></dt>
+<dd><p>Get total averaged fitness data frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mean fitness values across all replicates and groups</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.check_skew">
+<span class="sig-name descname"><span class="pre">check_skew</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Library</span> <span class="pre">skew'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.check_skew"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.Library.check_skew" title="Link to this definition"></a></dt>
+<dd><p>Check library skew using Lorenz curves.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sns_context</strong> (<em>str</em><em>, </em><em>optional</em>) – Seaborn context. Defaults to ‘notebook’.</p></li>
+<li><p><strong>rc_params</strong> (<em>dict</em><em>, </em><em>optional</em>) – RC parameters. Defaults to {}.</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – Plot title. Defaults to ‘Library skew’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lorenz curve plot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matplotlib.figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.check_depth">
+<span class="sig-name descname"><span class="pre">check_depth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Read</span> <span class="pre">depth'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.check_depth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.Library.check_depth" title="Link to this definition"></a></dt>
+<dd><p>Check read depth distributions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sns_context</strong> (<em>str</em><em>, </em><em>optional</em>) – Seaborn context. Defaults to ‘notebook’.</p></li>
+<li><p><strong>rc_params</strong> (<em>dict</em><em>, </em><em>optional</em>) – RC parameters. Defaults to {}.</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – Plot title. Defaults to ‘Read depth’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(figure with read counts, figure with read fractions)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.check_barcode_distribution_skew">
+<span class="sig-name descname"><span class="pre">check_barcode_distribution_skew</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Read</span> <span class="pre">depth'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.check_barcode_distribution_skew"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.Library.check_barcode_distribution_skew" title="Link to this definition"></a></dt>
+<dd><p>Check skew in barcode distribution using Lorenz curves.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sns_context</strong> (<em>str</em><em>, </em><em>optional</em>) – Seaborn context. Defaults to ‘notebook’.</p></li>
+<li><p><strong>threshold</strong> (<em>int</em><em>, </em><em>optional</em>) – Minimum read count threshold. Defaults to 0.</p></li>
+<li><p><strong>rc_params</strong> (<em>dict</em><em>, </em><em>optional</em>) – RC parameters. Defaults to {}.</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – Plot title. Defaults to ‘Read depth’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lorenz curve plot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matplotlib.figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.check_barcode_distribution_depth">
+<span class="sig-name descname"><span class="pre">check_barcode_distribution_depth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Read</span> <span class="pre">depth'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.check_barcode_distribution_depth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.Library.check_barcode_distribution_depth" title="Link to this definition"></a></dt>
+<dd><p>Check read depth distributions for barcodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sns_context</strong> (<em>str</em><em>, </em><em>optional</em>) – Seaborn context. Defaults to ‘notebook’.</p></li>
+<li><p><strong>threshold</strong> (<em>int</em><em>, </em><em>optional</em>) – Minimum read count threshold. Defaults to 0.</p></li>
+<li><p><strong>rc_params</strong> (<em>dict</em><em>, </em><em>optional</em>) – RC parameters. Defaults to {}.</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – Plot title. Defaults to ‘Read depth’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(figure with read counts, figure with read fractions)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.core.Library._make_replicate_checks">
+<span class="sig-name descname"><span class="pre">_make_replicate_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_plot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library._make_replicate_checks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.Library._make_replicate_checks" title="Link to this definition"></a></dt>
+<dd><p>Generate replicate-level fitness plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sns_context</strong> (<em>str</em><em>, </em><em>optional</em>) – Seaborn context. Defaults to ‘notebook’.</p></li>
+<li><p><strong>rc_params</strong> (<em>dict</em><em>, </em><em>optional</em>) – RC parameters. Defaults to {}.</p></li>
+<li><p><strong>grid_kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Additional arguments for the grid. Defaults to {}.</p></li>
+<li><p><strong>palette</strong> (<em>str</em><em>, </em><em>optional</em>) – Palette to use. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(unaveraged plot, averaged plot)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.make_replicate_checks">
+<span class="sig-name descname"><span class="pre">make_replicate_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.make_replicate_checks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.Library.make_replicate_checks" title="Link to this definition"></a></dt>
+<dd><p>Generate replicate-level fitness plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sns_context</strong> (<em>str</em><em>, </em><em>optional</em>) – Seaborn context. Defaults to ‘notebook’.</p></li>
+<li><p><strong>rc_params</strong> (<em>dict</em><em>, </em><em>optional</em>) – RC parameters. Defaults to {}.</p></li>
+<li><p><strong>grid_kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Additional arguments for the grid. Defaults to {}.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(unaveraged plot, averaged plot)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.make_grouped_replicate_plots">
+<span class="sig-name descname"><span class="pre">make_grouped_replicate_plots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grouping_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.make_grouped_replicate_plots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.Library.make_grouped_replicate_plots" title="Link to this definition"></a></dt>
+<dd><p>Generate grouped replicate-level fitness plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>grid_kwargs</strong> (<em>dict</em>) – Additional arguments for the grid</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Either JointGrid or PairGrid depending on number of replicates</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>seaborn plot</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.core.Library.make_initial_skew_checks">
+<span class="sig-name descname"><span class="pre">make_initial_skew_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.make_initial_skew_checks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.Library.make_initial_skew_checks" title="Link to this definition"></a></dt>
+<dd><p>Make plots checking initial abundance vs fitness measure skew.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sns_settings</strong> (<em>str</em><em>, </em><em>optional</em>) – Seaborn plotting settings. Defaults to ‘notebook’.</p></li>
+<li><p><strong>rc_settings</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary of rc parameters to use. Defaults to {}.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>self (Library): The Library object</p></li>
+<li><p>figs (list): List of seaborn.JointGrid plots showing skew</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="library-analyzer-utils-module">
-<h2>library_analyzer.utils module<a class="headerlink" href="#library-analyzer-utils-module" title="Link to this heading"></a></h2>
+<section id="module-library_analyzer.utils">
+<span id="library-analyzer-utils-module"></span><h2>library_analyzer.utils module<a class="headerlink" href="#module-library_analyzer.utils" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="library_analyzer.utils.PlottingContext">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">library_analyzer.utils.</span></span><span class="sig-name descname"><span class="pre">PlottingContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_ColorPalette</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/utils.html#PlottingContext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.utils.PlottingContext" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Context manager for setting matplotlib and seaborn plotting parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> (<em>str</em>) – The plotting context - one of ‘paper’, ‘notebook’, ‘talk’, ‘poster’</p></li>
+<li><p><strong>font_scale</strong> (<em>float</em>) – Scale factor for font sizes</p></li>
+<li><p><strong>rc</strong> (<em>dict</em>) – Dictionary of rc parameters to override</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.utils.PlottingContext.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_ColorPalette</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/utils.html#PlottingContext.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.utils.PlottingContext.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="module-library_analyzer">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-library_analyzer" title="Link to this heading"></a></h2>
+<p>Library Analyzer package for analyzing MPRA library data.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="library_analyzer.Library">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">library_analyzer.</span></span><span class="sig-name descname"><span class="pre">Library</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">WT_seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness_measure</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.Library" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for analyzing MPRA library data.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.Library.data_df">
+<span class="sig-name descname"><span class="pre">data_df</span></span><a class="headerlink" href="#library_analyzer.Library.data_df" title="Link to this definition"></a></dt>
+<dd><p>Library data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.Library.replicates">
+<span class="sig-name descname"><span class="pre">replicates</span></span><a class="headerlink" href="#library_analyzer.Library.replicates" title="Link to this definition"></a></dt>
+<dd><p>Replicate information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.Library.id_cols">
+<span class="sig-name descname"><span class="pre">id_cols</span></span><a class="headerlink" href="#library_analyzer.Library.id_cols" title="Link to this definition"></a></dt>
+<dd><p>Column names for variant IDs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.Library.group_cols">
+<span class="sig-name descname"><span class="pre">group_cols</span></span><a class="headerlink" href="#library_analyzer.Library.group_cols" title="Link to this definition"></a></dt>
+<dd><p>Column names for grouping variants</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.Library.rate_method">
+<span class="sig-name descname"><span class="pre">rate_method</span></span><a class="headerlink" href="#library_analyzer.Library.rate_method" title="Link to this definition"></a></dt>
+<dd><p>Method for calculating rates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.Library.alphabet">
+<span class="sig-name descname"><span class="pre">alphabet</span></span><a class="headerlink" href="#library_analyzer.Library.alphabet" title="Link to this definition"></a></dt>
+<dd><p>Valid characters in sequences</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.Library.WT_seq">
+<span class="sig-name descname"><span class="pre">WT_seq</span></span><a class="headerlink" href="#library_analyzer.Library.WT_seq" title="Link to this definition"></a></dt>
+<dd><p>Wild-type sequence</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="library_analyzer.Library.fitness_measure">
+<span class="sig-name descname"><span class="pre">fitness_measure</span></span><a class="headerlink" href="#library_analyzer.Library.fitness_measure" title="Link to this definition"></a></dt>
+<dd><p>Column name for fitness values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>Initialize Library object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_df</strong> (<em>pandas.DataFrame</em>) – Library data</p></li>
+<li><p><strong>replicates</strong> (<em>dict</em>) – Replicate information</p></li>
+<li><p><strong>id_cols</strong> (<em>list</em>) – Column names for variant IDs</p></li>
+<li><p><strong>group_cols</strong> (<em>list</em>) – Column names for grouping variants</p></li>
+<li><p><strong>rate_method</strong> (<em>str</em>) – Method for calculating rates</p></li>
+<li><p><strong>alphabet</strong> (<em>list</em>) – Valid characters in sequences</p></li>
+<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence</p></li>
+<li><p><strong>fitness_measure</strong> (<em>str</em>) – Column name for fitness values</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.Library.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">WT_seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness_measure</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.Library.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize Library object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_df</strong> (<em>pandas.DataFrame</em>) – Library data</p></li>
+<li><p><strong>replicates</strong> (<em>dict</em>) – Replicate information</p></li>
+<li><p><strong>id_cols</strong> (<em>list</em>) – Column names for variant IDs</p></li>
+<li><p><strong>group_cols</strong> (<em>list</em>) – Column names for grouping variants</p></li>
+<li><p><strong>rate_method</strong> (<em>str</em>) – Method for calculating rates</p></li>
+<li><p><strong>alphabet</strong> (<em>list</em>) – Valid characters in sequences</p></li>
+<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence</p></li>
+<li><p><strong>fitness_measure</strong> (<em>str</em>) – Column name for fitness values</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.Library.build_from_reads">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">build_from_reads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">WT_seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_call</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_regex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.build_from_reads"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.Library.build_from_reads" title="Link to this definition"></a></dt>
+<dd><p>Build Library object from read count data file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_file</strong> (<em>str</em>) – Path to data file (.xlsx, .csv, or .tsv)</p></li>
+<li><p><strong>replicates</strong> (<em>dict</em>) – Replicate information</p></li>
+<li><p><strong>id_cols</strong> (<em>list</em>) – Column names for variant IDs</p></li>
+<li><p><strong>group_cols</strong> (<em>list</em>) – Column names for grouping variants</p></li>
+<li><p><strong>rate_method</strong> (<em>str</em>) – Method for calculating rates</p></li>
+<li><p><strong>alphabet</strong> (<em>list</em>) – Valid characters in sequences</p></li>
+<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence</p></li>
+<li><p><strong>process_call</strong> (<em>str</em>) – Column name for processing</p></li>
+<li><p><strong>name_regex</strong> (<em>str</em>) – Regex pattern for extracting names</p></li>
+<li><p><strong>sheet_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Excel sheet name. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New Library object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#library_analyzer.Library" title="library_analyzer.Library">Library</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If data_file is not .xlsx, .csv or .tsv</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.Library.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.Library.save" title="Link to this definition"></a></dt>
+<dd><p>Save Library object to a pickle file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Path to save the library object</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If filename does not end in .pkl</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.Library.load">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.Library.load" title="Link to this definition"></a></dt>
+<dd><p>Load Library object from a pickle file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Path to the library pickle file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Loaded Library object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#library_analyzer.Library" title="library_analyzer.Library">Library</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – If filename does not end in .pkl</p></li>
+<li><p><strong>ValueError</strong> – If loaded object is not a Library instance</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="library_analyzer.Library.fitness_frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fitness_frame</span></span><a class="headerlink" href="#library_analyzer.Library.fitness_frame" title="Link to this definition"></a></dt>
+<dd><p>Get fitness data frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Fitness values for each variant</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="library_analyzer.Library.rep_average_frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rep_average_frame</span></span><a class="headerlink" href="#library_analyzer.Library.rep_average_frame" title="Link to this definition"></a></dt>
+<dd><p>Get replicate-averaged fitness data frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mean and std of fitness values across replicates</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="library_analyzer.Library.group_average_frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">group_average_frame</span></span><a class="headerlink" href="#library_analyzer.Library.group_average_frame" title="Link to this definition"></a></dt>
+<dd><p>Get group-averaged fitness data frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mean and std of fitness values across groups</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="library_analyzer.Library.total_average_frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_average_frame</span></span><a class="headerlink" href="#library_analyzer.Library.total_average_frame" title="Link to this definition"></a></dt>
+<dd><p>Get total averaged fitness data frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mean fitness values across all replicates and groups</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.Library.check_skew">
+<span class="sig-name descname"><span class="pre">check_skew</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Library</span> <span class="pre">skew'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.check_skew"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.Library.check_skew" title="Link to this definition"></a></dt>
+<dd><p>Check library skew using Lorenz curves.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sns_context</strong> (<em>str</em><em>, </em><em>optional</em>) – Seaborn context. Defaults to ‘notebook’.</p></li>
+<li><p><strong>rc_params</strong> (<em>dict</em><em>, </em><em>optional</em>) – RC parameters. Defaults to {}.</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – Plot title. Defaults to ‘Library skew’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lorenz curve plot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matplotlib.figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.Library.check_depth">
+<span class="sig-name descname"><span class="pre">check_depth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Read</span> <span class="pre">depth'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.check_depth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.Library.check_depth" title="Link to this definition"></a></dt>
+<dd><p>Check read depth distributions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sns_context</strong> (<em>str</em><em>, </em><em>optional</em>) – Seaborn context. Defaults to ‘notebook’.</p></li>
+<li><p><strong>rc_params</strong> (<em>dict</em><em>, </em><em>optional</em>) – RC parameters. Defaults to {}.</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – Plot title. Defaults to ‘Read depth’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(figure with read counts, figure with read fractions)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.Library.check_barcode_distribution_skew">
+<span class="sig-name descname"><span class="pre">check_barcode_distribution_skew</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Read</span> <span class="pre">depth'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.check_barcode_distribution_skew"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.Library.check_barcode_distribution_skew" title="Link to this definition"></a></dt>
+<dd><p>Check skew in barcode distribution using Lorenz curves.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sns_context</strong> (<em>str</em><em>, </em><em>optional</em>) – Seaborn context. Defaults to ‘notebook’.</p></li>
+<li><p><strong>threshold</strong> (<em>int</em><em>, </em><em>optional</em>) – Minimum read count threshold. Defaults to 0.</p></li>
+<li><p><strong>rc_params</strong> (<em>dict</em><em>, </em><em>optional</em>) – RC parameters. Defaults to {}.</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – Plot title. Defaults to ‘Read depth’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lorenz curve plot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matplotlib.figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.Library.check_barcode_distribution_depth">
+<span class="sig-name descname"><span class="pre">check_barcode_distribution_depth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Read</span> <span class="pre">depth'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.check_barcode_distribution_depth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.Library.check_barcode_distribution_depth" title="Link to this definition"></a></dt>
+<dd><p>Check read depth distributions for barcodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sns_context</strong> (<em>str</em><em>, </em><em>optional</em>) – Seaborn context. Defaults to ‘notebook’.</p></li>
+<li><p><strong>threshold</strong> (<em>int</em><em>, </em><em>optional</em>) – Minimum read count threshold. Defaults to 0.</p></li>
+<li><p><strong>rc_params</strong> (<em>dict</em><em>, </em><em>optional</em>) – RC parameters. Defaults to {}.</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – Plot title. Defaults to ‘Read depth’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(figure with read counts, figure with read fractions)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.Library._make_replicate_checks">
+<span class="sig-name descname"><span class="pre">_make_replicate_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_plot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library._make_replicate_checks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.Library._make_replicate_checks" title="Link to this definition"></a></dt>
+<dd><p>Generate replicate-level fitness plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sns_context</strong> (<em>str</em><em>, </em><em>optional</em>) – Seaborn context. Defaults to ‘notebook’.</p></li>
+<li><p><strong>rc_params</strong> (<em>dict</em><em>, </em><em>optional</em>) – RC parameters. Defaults to {}.</p></li>
+<li><p><strong>grid_kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Additional arguments for the grid. Defaults to {}.</p></li>
+<li><p><strong>palette</strong> (<em>str</em><em>, </em><em>optional</em>) – Palette to use. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(unaveraged plot, averaged plot)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.Library.make_replicate_checks">
+<span class="sig-name descname"><span class="pre">make_replicate_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.make_replicate_checks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.Library.make_replicate_checks" title="Link to this definition"></a></dt>
+<dd><p>Generate replicate-level fitness plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sns_context</strong> (<em>str</em><em>, </em><em>optional</em>) – Seaborn context. Defaults to ‘notebook’.</p></li>
+<li><p><strong>rc_params</strong> (<em>dict</em><em>, </em><em>optional</em>) – RC parameters. Defaults to {}.</p></li>
+<li><p><strong>grid_kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Additional arguments for the grid. Defaults to {}.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(unaveraged plot, averaged plot)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.Library.make_grouped_replicate_plots">
+<span class="sig-name descname"><span class="pre">make_grouped_replicate_plots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grouping_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.make_grouped_replicate_plots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.Library.make_grouped_replicate_plots" title="Link to this definition"></a></dt>
+<dd><p>Generate grouped replicate-level fitness plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>grid_kwargs</strong> (<em>dict</em>) – Additional arguments for the grid</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Either JointGrid or PairGrid depending on number of replicates</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>seaborn plot</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.Library.make_initial_skew_checks">
+<span class="sig-name descname"><span class="pre">make_initial_skew_checks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'notebook'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library.make_initial_skew_checks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.Library.make_initial_skew_checks" title="Link to this definition"></a></dt>
+<dd><p>Make plots checking initial abundance vs fitness measure skew.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sns_settings</strong> (<em>str</em><em>, </em><em>optional</em>) – Seaborn plotting settings. Defaults to ‘notebook’.</p></li>
+<li><p><strong>rc_settings</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary of rc parameters to use. Defaults to {}.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>self (Library): The Library object</p></li>
+<li><p>figs (list): List of seaborn.JointGrid plots showing skew</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="library_analyzer.PlottingContext">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">library_analyzer.</span></span><span class="sig-name descname"><span class="pre">PlottingContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_ColorPalette</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/utils.html#PlottingContext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.PlottingContext" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Context manager for setting matplotlib and seaborn plotting parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> (<em>str</em>) – The plotting context - one of ‘paper’, ‘notebook’, ‘talk’, ‘poster’</p></li>
+<li><p><strong>font_scale</strong> (<em>float</em>) – Scale factor for font sizes</p></li>
+<li><p><strong>rc</strong> (<em>dict</em>) – Dictionary of rc parameters to override</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="library_analyzer.PlottingContext.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sns_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rc_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_ColorPalette</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/utils.html#PlottingContext.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.PlottingContext.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 

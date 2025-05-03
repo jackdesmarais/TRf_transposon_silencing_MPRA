@@ -4,10 +4,10 @@ library\_analyzer package
 Submodules
 ----------
 
-library\_analyzer.library\_analyzer module
-------------------------------------------
+library\_analyzer.core module
+-----------------------------
 
-.. automodule:: library_analyzer.library_analyzer
+.. automodule:: library_analyzer.core
    :members:
    :undoc-members:
    :show-inheritance:
