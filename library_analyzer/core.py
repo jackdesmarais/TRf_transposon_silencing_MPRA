@@ -218,51 +218,36 @@ class Library:
     """Class for analyzing MPRA library data.
     
     Attributes:
-        data_df (pandas.DataFrame): DataFrame containing the library data with counts and abundances
-        replicates (dict): Dictionary mapping replicate names to their timepoints
-        id_cols (list): List of column names that identify individual variants
-        group_cols (list): List of column names used for grouping variants
-        rate_method (str): Method used for calculating rates ('l2fc' or 'l10fc')
-        alphabet (list): List of valid characters in sequences
-        WT_seq (str): Wild-type sequence used as reference
-        fitness_measure (str): Name of the column containing fitness values
+        data_df (pandas.DataFrame): Library data
+        replicates (dict): Replicate information
+        id_cols (list): Column names for variant IDs
+        group_cols (list): Column names for grouping variants
+        rate_method (str): Method for calculating rates
+        alphabet (list): Valid characters in sequences
+        WT_seq (str): Wild-type sequence
+        fitness_measure (str): Column name for fitness values
     """
 
     def __init__(self, data_df, replicates, id_cols, group_cols, rate_method, alphabet, WT_seq, fitness_measure):
         """Initialize Library object.
         
         Args:
-            data_df (pandas.DataFrame): DataFrame containing the library data with counts and abundances
-            replicates (dict): Dictionary mapping replicate names to their timepoints
-            id_cols (list): List of column names that identify individual variants
-            group_cols (list): List of column names used for grouping variants
-            rate_method (str): Method used for calculating rates ('l2fc' or 'l10fc')
-            alphabet (list): List of valid characters in sequences
-            WT_seq (str): Wild-type sequence used as reference
-            fitness_measure (str): Name of the column containing fitness values
+            data_df (pandas.DataFrame): Library data
+            replicates (dict): Replicate information
+            id_cols (list): Column names for variant IDs
+            group_cols (list): Column names for grouping variants
+            rate_method (str): Method for calculating rates
+            alphabet (list): Valid characters in sequences
+            WT_seq (str): Wild-type sequence
+            fitness_measure (str): Column name for fitness values
         """
-        #: DataFrame containing the library data with counts and abundances
         self.data_df = data_df
-        
-        #: Dictionary mapping replicate names to their timepoints
         self.replicates = replicates
-        
-        #: List of column names that identify individual variants
         self.id_cols = id_cols
-        
-        #: List of column names used for grouping variants
         self.group_cols = group_cols
-        
-        #: Method used for calculating rates ('l2fc' or 'l10fc')
         self.rate_method = rate_method
-        
-        #: List of valid characters in sequences
         self.alphabet = alphabet
-        
-        #: Wild-type sequence used as reference
         self.WT_seq = WT_seq
-        
-        #: Name of the column containing fitness values
         self.fitness_measure = fitness_measure
 
     @classmethod

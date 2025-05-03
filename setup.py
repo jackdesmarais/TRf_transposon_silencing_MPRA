@@ -1,10 +1,4 @@
 from setuptools import setup, find_packages
-import os
-
-# Get the absolute path to the directory containing setup.py
-here = os.path.abspath(os.path.dirname(__file__))
-# Get the path to the readme file
-readme_path = os.path.join(here, "readme.md")
 
 setup(
     name="library_analyzer",
@@ -25,7 +19,7 @@ setup(
     author="John J Desmarais",
     author_email="john.j.desmarais@gmail.com",
     description="A package for analyzing MPRA library data",
-    long_description=open(readme_path).read(),
+    long_description="A package for analyzing MPRA library data",
     long_description_content_type="text/markdown",
     url="https://github.com/jackdesmarais/TRf_transposon_silencing_MPRA",
     classifiers=[
@@ -34,4 +28,8 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.9",
+    # Prevent setuptools from trying to fetch remote data
+    zip_safe=False,
+    # Don't try to include non-Python files
+    include_package_data=False,
 ) 
