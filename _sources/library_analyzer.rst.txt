@@ -12,14 +12,6 @@ library\_analyzer.library\_analyzer module
    :undoc-members:
    :show-inheritance:
 
-library\_analyzer.setup module
-------------------------------
-
-.. automodule:: library_analyzer.setup
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 library\_analyzer.utils module
 ------------------------------
 
