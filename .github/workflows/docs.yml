@@ -28,13 +28,14 @@ jobs:
           
       - name: Build docs
         env:
-          PYTHONPATH: ${{ github.workspace }}
+          PYTHONPATH: ${{ github.workspace }}:${{ github.workspace }}/library_analyzer
         run: |
           cd docs
           make clean
           # Generate API documentation
           sphinx-apidoc -f -o source ../library_analyzer/
-          make html
+          python -c "import sys; print('Python path:', sys.path)"  # Debug Python path
+          make html SPHINXOPTS="-v"  # Verbose output for debugging
           # Debug: show the contents of the build directory
           ls -R build/html
           

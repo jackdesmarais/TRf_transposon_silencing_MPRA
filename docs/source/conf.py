@@ -25,9 +25,15 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
     'myst_parser',
-    'sphinx.ext.intersphinx',
 ]
 
+# Source parsers and suffixes
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
+
+# Paths setup
 templates_path = ['_templates']
 exclude_patterns = []
 
@@ -37,7 +43,7 @@ exclude_patterns = []
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
-# Configure MyST-Parser
+# MyST Parser settings
 myst_enable_extensions = [
     "colon_fence",
     "deflist",
@@ -45,12 +51,7 @@ myst_enable_extensions = [
     "tasklist",
 ]
 
-source_suffix = {
-    '.rst': 'restructuredtext',
-    '.md': 'markdown',
-}
-
-# Autodoc configuration
+# Autodoc settings
 autodoc_default_options = {
     'members': True,
     'member-order': 'bysource',
@@ -59,7 +60,7 @@ autodoc_default_options = {
     'exclude-members': '__weakref__'
 }
 
-# Napoleon settings for better docstring support
+# Napoleon settings
 napoleon_google_docstring = True
 napoleon_numpy_docstring = True
 napoleon_include_init_with_doc = True
@@ -68,7 +69,8 @@ napoleon_include_private_with_doc = True
 # Make sure the master doc is index
 master_doc = 'index'
 
-# Enable markdown files to include other markdown files
+# Additional MyST Parser settings
+myst_heading_anchors = 3
 myst_enable_extensions = [
     "colon_fence",
     "deflist",
@@ -81,3 +83,8 @@ myst_enable_extensions = [
     "substitution",
     "tasklist",
 ]
+
+# Enable parsing of all files with .md extension
+source_parsers = {
+    '.md': 'myst_parser.sphinx_'
+}
