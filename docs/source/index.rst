@@ -3,7 +3,7 @@
 Welcome to Library Analyzer's documentation!
 ============================================
 
-.. include:: ../../README.md
+.. include:: ../../readme.md
    :parser: myst_parser.sphinx_
 
 Contents
