@@ -18,6 +18,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -43,7 +44,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Example Notebooks:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Jupyter Notebooks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">library_analyzer</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">library_analyzer package</a><ul>
@@ -257,94 +262,20 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">library_analyzer.core.</span></span><span class="sig-name descname"><span class="pre">Library</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">WT_seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness_measure</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.core.Library" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class for analyzing MPRA library data.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.core.Library.data_df">
-<span class="sig-name descname"><span class="pre">data_df</span></span><a class="headerlink" href="#library_analyzer.core.Library.data_df" title="Permalink to this definition"></a></dt>
-<dd><p>Library data</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pandas.DataFrame</p>
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_df</strong> (<em>pandas.DataFrame</em>) – Library data</p></li>
+<li><p><strong>replicates</strong> (<em>dict</em>) – Replicate information</p></li>
+<li><p><strong>id_cols</strong> (<em>list</em>) – Column names for variant IDs</p></li>
+<li><p><strong>group_cols</strong> (<em>list</em>) – Column names for grouping variants</p></li>
+<li><p><strong>rate_method</strong> (<em>str</em>) – Method for calculating rates</p></li>
+<li><p><strong>alphabet</strong> (<em>list</em>) – Valid characters in sequences</p></li>
+<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence</p></li>
+<li><p><strong>fitness_measure</strong> (<em>str</em>) – Column name for fitness values</p></li>
+</ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.core.Library.replicates">
-<span class="sig-name descname"><span class="pre">replicates</span></span><a class="headerlink" href="#library_analyzer.core.Library.replicates" title="Permalink to this definition"></a></dt>
-<dd><p>Replicate information</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.core.Library.id_cols">
-<span class="sig-name descname"><span class="pre">id_cols</span></span><a class="headerlink" href="#library_analyzer.core.Library.id_cols" title="Permalink to this definition"></a></dt>
-<dd><p>Column names for variant IDs</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.core.Library.group_cols">
-<span class="sig-name descname"><span class="pre">group_cols</span></span><a class="headerlink" href="#library_analyzer.core.Library.group_cols" title="Permalink to this definition"></a></dt>
-<dd><p>Column names for grouping variants</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.core.Library.rate_method">
-<span class="sig-name descname"><span class="pre">rate_method</span></span><a class="headerlink" href="#library_analyzer.core.Library.rate_method" title="Permalink to this definition"></a></dt>
-<dd><p>Method for calculating rates</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.core.Library.alphabet">
-<span class="sig-name descname"><span class="pre">alphabet</span></span><a class="headerlink" href="#library_analyzer.core.Library.alphabet" title="Permalink to this definition"></a></dt>
-<dd><p>Valid characters in sequences</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.core.Library.WT_seq">
-<span class="sig-name descname"><span class="pre">WT_seq</span></span><a class="headerlink" href="#library_analyzer.core.Library.WT_seq" title="Permalink to this definition"></a></dt>
-<dd><p>Wild-type sequence</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.core.Library.fitness_measure">
-<span class="sig-name descname"><span class="pre">fitness_measure</span></span><a class="headerlink" href="#library_analyzer.core.Library.fitness_measure" title="Permalink to this definition"></a></dt>
-<dd><p>Column name for fitness values</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
 <p>Initialize Library object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -714,94 +645,20 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">library_analyzer.</span></span><span class="sig-name descname"><span class="pre">Library</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">WT_seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fitness_measure</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/library_analyzer/core.html#Library"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#library_analyzer.Library" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class for analyzing MPRA library data.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.Library.data_df">
-<span class="sig-name descname"><span class="pre">data_df</span></span><a class="headerlink" href="#library_analyzer.Library.data_df" title="Permalink to this definition"></a></dt>
-<dd><p>Library data</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pandas.DataFrame</p>
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_df</strong> (<em>pandas.DataFrame</em>) – Library data</p></li>
+<li><p><strong>replicates</strong> (<em>dict</em>) – Replicate information</p></li>
+<li><p><strong>id_cols</strong> (<em>list</em>) – Column names for variant IDs</p></li>
+<li><p><strong>group_cols</strong> (<em>list</em>) – Column names for grouping variants</p></li>
+<li><p><strong>rate_method</strong> (<em>str</em>) – Method for calculating rates</p></li>
+<li><p><strong>alphabet</strong> (<em>list</em>) – Valid characters in sequences</p></li>
+<li><p><strong>WT_seq</strong> (<em>str</em>) – Wild-type sequence</p></li>
+<li><p><strong>fitness_measure</strong> (<em>str</em>) – Column name for fitness values</p></li>
+</ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.Library.replicates">
-<span class="sig-name descname"><span class="pre">replicates</span></span><a class="headerlink" href="#library_analyzer.Library.replicates" title="Permalink to this definition"></a></dt>
-<dd><p>Replicate information</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.Library.id_cols">
-<span class="sig-name descname"><span class="pre">id_cols</span></span><a class="headerlink" href="#library_analyzer.Library.id_cols" title="Permalink to this definition"></a></dt>
-<dd><p>Column names for variant IDs</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.Library.group_cols">
-<span class="sig-name descname"><span class="pre">group_cols</span></span><a class="headerlink" href="#library_analyzer.Library.group_cols" title="Permalink to this definition"></a></dt>
-<dd><p>Column names for grouping variants</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.Library.rate_method">
-<span class="sig-name descname"><span class="pre">rate_method</span></span><a class="headerlink" href="#library_analyzer.Library.rate_method" title="Permalink to this definition"></a></dt>
-<dd><p>Method for calculating rates</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.Library.alphabet">
-<span class="sig-name descname"><span class="pre">alphabet</span></span><a class="headerlink" href="#library_analyzer.Library.alphabet" title="Permalink to this definition"></a></dt>
-<dd><p>Valid characters in sequences</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.Library.WT_seq">
-<span class="sig-name descname"><span class="pre">WT_seq</span></span><a class="headerlink" href="#library_analyzer.Library.WT_seq" title="Permalink to this definition"></a></dt>
-<dd><p>Wild-type sequence</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="library_analyzer.Library.fitness_measure">
-<span class="sig-name descname"><span class="pre">fitness_measure</span></span><a class="headerlink" href="#library_analyzer.Library.fitness_measure" title="Permalink to this definition"></a></dt>
-<dd><p>Column name for fitness values</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
 <p>Initialize Library object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
