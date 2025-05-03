@@ -6,14 +6,16 @@ This section contains Jupyter notebooks demonstrating the usage of the library_a
 Data Processing
 --------------
 
-.. nbgallery::
+.. toctree::
+   :maxdepth: 1
 
    notebooks/process_data_to_library.ipynb
 
 Figure Generation
 ---------------
 
-.. nbgallery::
+.. toctree::
+   :maxdepth: 1
 
    notebooks/make_figure_panels.ipynb
    notebooks/make_supplemental_figures.ipynb

@@ -16,6 +16,7 @@ docs_require = [
     "sphinx_rtd_theme",
     "myst-parser",
     "nbsphinx",  # For rendering Jupyter notebooks
+    "pandoc", # For rendering Jupyter notebooks
     "ipython",   # Required by nbsphinx
 ]
 
