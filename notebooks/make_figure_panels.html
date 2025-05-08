@@ -117,6 +117,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="n">np</span><span class="o">.</span><span class="n">bool</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bool_</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mavenn</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mavenn</span><span class="w"> </span><span class="kn">import</span> <span class="n">load</span> <span class="k">as</span> <span class="n">mavenn_load</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -313,8 +314,18 @@ array([&#39;CTAGCGACTAAACACATCAA&#39;, &#39;GGATCCGACTAAACACATCAA&#39;,
 </section>
 <section id="Make-MAVENN-heatmap">
 <h2>Make MAVENN heatmap<a class="headerlink" href="#Make-MAVENN-heatmap" title="Permalink to this heading"></a></h2>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set to True to retrain the model from scratch</span>
+<span class="c1"># (otherwise will load the model used in the paper)</span>
+<span class="n">retrain_model</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maven_plotting_defaults</span> <span class="o">=</span> <span class="n">defaults</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -355,13 +366,16 @@ array([&#39;CTAGCGACTAAACACATCAA&#39;, &#39;GGATCCGACTAAACACATCAA&#39;,
         <span class="n">train_val</span> <span class="o">=</span> <span class="n">train_val</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
                         <span class="s1">&#39;variable&#39;</span><span class="p">:</span><span class="s1">&#39;replicate&#39;</span><span class="p">})</span>
         <span class="n">display</span><span class="p">(</span><span class="n">train_val</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">retrain_model</span><span class="p">:</span>
+                <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">L</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">WT_seq</span><span class="p">),</span> <span class="n">alphabet</span><span class="o">=</span><span class="s1">&#39;dna&#39;</span><span class="p">,</span> <span class="n">regression_type</span><span class="o">=</span><span class="s1">&#39;GE&#39;</span><span class="p">,</span> <span class="n">gpmap_type</span><span class="o">=</span><span class="s1">&#39;additive&#39;</span><span class="p">)</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">train_val</span><span class="p">[</span><span class="s1">&#39;sequence&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                                <span class="n">y</span><span class="o">=</span><span class="n">train_val</span><span class="p">[</span><span class="s1">&#39;Observed_value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                                <span class="n">validation_flags</span><span class="o">=</span><span class="n">train_val</span><span class="p">[</span><span class="s1">&#39;valid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../data/processed/MAVENN_model.ckpt&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+                <span class="n">model</span> <span class="o">=</span> <span class="n">mavenn_load</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../data/processed/2024_08_08__MAVENN_Total_dataset.ckpt&#39;</span><span class="p">)</span>
 
-        <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">L</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">WT_seq</span><span class="p">),</span> <span class="n">alphabet</span><span class="o">=</span><span class="s1">&#39;dna&#39;</span><span class="p">,</span> <span class="n">regression_type</span><span class="o">=</span><span class="s1">&#39;GE&#39;</span><span class="p">,</span> <span class="n">gpmap_type</span><span class="o">=</span><span class="s1">&#39;additive&#39;</span><span class="p">)</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">train_val</span><span class="p">[</span><span class="s1">&#39;sequence&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-                        <span class="n">y</span><span class="o">=</span><span class="n">train_val</span><span class="p">[</span><span class="s1">&#39;Observed_value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-                        <span class="n">validation_flags</span><span class="o">=</span><span class="n">train_val</span><span class="p">[</span><span class="s1">&#39;valid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;../data/processed/MAVENN_model.ckpt&#39;</span><span class="p">)</span>
 
         <span class="n">I_var</span><span class="p">,</span> <span class="n">dI_var</span> <span class="o">=</span>  <span class="n">model</span><span class="o">.</span><span class="n">I_variational</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">test_df</span><span class="p">[</span><span class="s1">&#39;sequence&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">test_df</span><span class="p">[</span><span class="s1">&#39;Observed_value&#39;</span><span class="p">])</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;test_I_var: </span><span class="si">{</span><span class="n">I_var</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> +- </span><span class="si">{</span><span class="n">dI_var</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> bits&#39;</span><span class="p">)</span>
@@ -683,16 +697,11 @@ array([&#39;CTAGCGACTAAACACATCAA&#39;, &#39;GGATCCGACTAAACACATCAA&#39;,
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-N = 4,269 observations set as training data.
-Using 20.0% for validation.
-Data shuffled.
-Time to set data: 0.0741 sec.
-Training time: 2.2 seconds
-Model saved to these files:
-        ../data/processed/MAVENN_model.ckpt.pickle
-        ../data/processed/MAVENN_model.ckpt.h5
-test_I_var: 0.322 +- 0.062 bits
-test_I_pred: 0.491 +- 0.024 bits
+Model loaded from these files:
+        ../data/processed/2024_08_08__MAVENN_Total_dataset.ckpt.pickle
+        ../data/processed/2024_08_08__MAVENN_Total_dataset.ckpt.h5
+test_I_var: 0.317 +- 0.060 bits
+test_I_pred: 0.483 +- 0.021 bits
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -708,7 +717,7 @@ test_I_pred: 0.491 +- 0.024 bits
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_make_figure_panels_11_4.png" src="../_images/notebooks_make_figure_panels_11_4.png" />
+<img alt="../_images/notebooks_make_figure_panels_12_4.png" src="../_images/notebooks_make_figure_panels_12_4.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -724,7 +733,7 @@ test_I_pred: 0.491 +- 0.024 bits
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_make_figure_panels_11_6.png" src="../_images/notebooks_make_figure_panels_11_6.png" />
+<img alt="../_images/notebooks_make_figure_panels_12_6.png" src="../_images/notebooks_make_figure_panels_12_6.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -740,11 +749,11 @@ test_I_pred: 0.491 +- 0.024 bits
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_make_figure_panels_11_8.png" src="../_images/notebooks_make_figure_panels_11_8.png" />
+<img alt="../_images/notebooks_make_figure_panels_12_8.png" src="../_images/notebooks_make_figure_panels_12_8.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wt_seq</span> <span class="o">=</span> <span class="n">wts</span><span class="p">[</span><span class="s1">&#39;Josh_match&#39;</span><span class="p">]</span>
@@ -782,9 +791,9 @@ test_I_pred: 0.491 +- 0.024 bits
 <div class="highlight"><pre>
 /Users/jackdesmarais/miniconda3/envs/TRf_transposon_silencing_MPRA/lib/python3.9/site-packages/seaborn/utils.py:61: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   fig.canvas.draw()
-/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_54944/2870532901.py:24: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_35703/2870532901.py:24: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.savefig(f&#39;../figure_panels/main/MAVENN_heatmap_bilinear_norm.pdf&#39;, dpi=600)
-/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_54944/2870532901.py:24: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_35703/2870532901.py:24: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.savefig(f&#39;../figure_panels/main/MAVENN_heatmap_bilinear_norm.pdf&#39;, dpi=600)
 /Users/jackdesmarais/miniconda3/envs/TRf_transposon_silencing_MPRA/lib/python3.9/site-packages/IPython/core/pylabtools.py:152: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   fig.canvas.print_figure(bytes_io, **kw)
@@ -794,14 +803,14 @@ test_I_pred: 0.491 +- 0.024 bits
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_make_figure_panels_12_1.png" src="../_images/notebooks_make_figure_panels_12_1.png" />
+<img alt="../_images/notebooks_make_figure_panels_13_1.png" src="../_images/notebooks_make_figure_panels_13_1.png" />
 </div>
 </div>
 </section>
 <section id="Make-all-points-panel">
 <h2>Make all points panel<a class="headerlink" href="#Make-all-points-panel" title="Permalink to this heading"></a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">rankdata</span>
@@ -883,9 +892,9 @@ test_I_pred: 0.491 +- 0.024 bits
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_54944/1728770977.py:69: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_35703/1728770977.py:69: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.savefig(f&#39;../figure_panels/main/rank_pointplot.pdf&#39;, dpi=600)
-/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_54944/1728770977.py:69: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_35703/1728770977.py:69: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.savefig(f&#39;../figure_panels/main/rank_pointplot.pdf&#39;, dpi=600)
 /Users/jackdesmarais/miniconda3/envs/TRf_transposon_silencing_MPRA/lib/python3.9/site-packages/IPython/core/pylabtools.py:152: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   fig.canvas.print_figure(bytes_io, **kw)
@@ -895,14 +904,14 @@ test_I_pred: 0.491 +- 0.024 bits
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_make_figure_panels_14_1.png" src="../_images/notebooks_make_figure_panels_14_1.png" />
+<img alt="../_images/notebooks_make_figure_panels_15_1.png" src="../_images/notebooks_make_figure_panels_15_1.png" />
 </div>
 </div>
 </section>
 <section id="Make-region-stratification-plot">
 <h2>Make region stratification plot<a class="headerlink" href="#Make-region-stratification-plot" title="Permalink to this heading"></a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comp</span> <span class="o">=</span> <span class="s1">&#39;Josh_match&#39;</span>
@@ -1261,14 +1270,14 @@ test_I_pred: 0.491 +- 0.024 bits
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_make_figure_panels_16_3.png" src="../_images/notebooks_make_figure_panels_16_3.png" />
+<img alt="../_images/notebooks_make_figure_panels_17_3.png" src="../_images/notebooks_make_figure_panels_17_3.png" />
 </div>
 </div>
 </section>
 <section id="make-the-mutation-number-panel">
 <h2>make the mutation number panel<a class="headerlink" href="#make-the-mutation-number-panel" title="Permalink to this heading"></a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comp</span><span class="o">=</span><span class="s1">&#39;Josh_match&#39;</span>
@@ -1329,7 +1338,7 @@ test_I_pred: 0.491 +- 0.024 bits
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_54944/1901929372.py:21: SettingWithCopyWarning:
+/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_35703/1901929372.py:21: SettingWithCopyWarning:
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
@@ -1520,7 +1529,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_54944/1901929372.py:49: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_35703/1901929372.py:49: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.savefig(f&#39;../figure_panels/main/mutation_number_panel_full_box.pdf&#39;, dpi=600)
 </pre></div></div>
 </div>
@@ -1537,7 +1546,7 @@ OG
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_54944/1901929372.py:49: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_35703/1901929372.py:49: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.savefig(f&#39;../figure_panels/main/mutation_number_panel_full_box.pdf&#39;, dpi=600)
 /Users/jackdesmarais/miniconda3/envs/TRf_transposon_silencing_MPRA/lib/python3.9/site-packages/IPython/core/pylabtools.py:152: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   fig.canvas.print_figure(bytes_io, **kw)
@@ -1547,14 +1556,14 @@ OG
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_make_figure_panels_18_6.png" src="../_images/notebooks_make_figure_panels_18_6.png" />
+<img alt="../_images/notebooks_make_figure_panels_19_6.png" src="../_images/notebooks_make_figure_panels_19_6.png" />
 </div>
 </div>
 </section>
 <section id="Make-sliding-window-panel">
 <h2>Make sliding window panel<a class="headerlink" href="#Make-sliding-window-panel" title="Permalink to this heading"></a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">def_window_muts</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
@@ -1773,7 +1782,7 @@ OG
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_54944/3699859218.py:47: SettingWithCopyWarning:
+/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_35703/3699859218.py:47: SettingWithCopyWarning:
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
@@ -1943,9 +1952,9 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_54944/3699859218.py:72: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_35703/3699859218.py:72: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.savefig(f&#39;../figure_panels/main/Mutation_window_panel_full_box.pdf&#39;, dpi=600)
-/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_54944/3699859218.py:72: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_35703/3699859218.py:72: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.savefig(f&#39;../figure_panels/main/Mutation_window_panel_full_box.pdf&#39;, dpi=600)
 /Users/jackdesmarais/miniconda3/envs/TRf_transposon_silencing_MPRA/lib/python3.9/site-packages/IPython/core/pylabtools.py:152: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   fig.canvas.print_figure(bytes_io, **kw)
@@ -1955,14 +1964,14 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_make_figure_panels_20_4.png" src="../_images/notebooks_make_figure_panels_20_4.png" />
+<img alt="../_images/notebooks_make_figure_panels_21_4.png" src="../_images/notebooks_make_figure_panels_21_4.png" />
 </div>
 </div>
 </section>
 <section id="Make-the-mutant-number-region-panel">
 <h2>Make the mutant number region panel<a class="headerlink" href="#Make-the-mutant-number-region-panel" title="Permalink to this heading"></a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">Normalize</span>
@@ -2050,7 +2059,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_54944/162919943.py:26: SettingWithCopyWarning:
+/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_35703/162919943.py:26: SettingWithCopyWarning:
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
@@ -2189,7 +2198,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   var *= np.divide(n, n-ddof)  # to avoid error on division by zero
 /Users/jackdesmarais/miniconda3/envs/TRf_transposon_silencing_MPRA/lib/python3.9/site-packages/scipy/stats/_stats_py.py:1081: RuntimeWarning: invalid value encountered in double_scalars
   var *= np.divide(n, n-ddof)  # to avoid error on division by zero
-/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_54944/162919943.py:43: SettingWithCopyWarning:
+/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_35703/162919943.py:43: SettingWithCopyWarning:
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
@@ -2328,9 +2337,9 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_54944/162919943.py:76: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_35703/162919943.py:76: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.savefig(f&#39;../figure_panels/main/Mutations_by_region_full_box.pdf&#39;, dpi=600)
-/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_54944/162919943.py:76: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+/var/folders/5_/tjkj20xs1zjbm1r6n07ccp4h0000gn/T/ipykernel_35703/162919943.py:76: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.savefig(f&#39;../figure_panels/main/Mutations_by_region_full_box.pdf&#39;, dpi=600)
 /Users/jackdesmarais/miniconda3/envs/TRf_transposon_silencing_MPRA/lib/python3.9/site-packages/IPython/core/pylabtools.py:152: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   fig.canvas.print_figure(bytes_io, **kw)
@@ -2340,7 +2349,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_make_figure_panels_22_5.png" src="../_images/notebooks_make_figure_panels_22_5.png" />
+<img alt="../_images/notebooks_make_figure_panels_23_5.png" src="../_images/notebooks_make_figure_panels_23_5.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
