@@ -16,6 +16,18 @@
   },
   {
    "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "run_timing = True\n",
+    "if run_timing:\n",
+    "    import time\n",
+    "    start_time = time.time()\n"
+   ]
+  },
+  {
+   "cell_type": "code",
    "execution_count": 2,
    "metadata": {},
    "outputs": [],
@@ -235,10 +247,22 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 8,
    "metadata": {},
-   "outputs": [],
-   "source": []
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Total time taken: 0.31 minutes\n"
+     ]
+    }
+   ],
+   "source": [
+    "if run_timing:\n",
+    "    total_time = time.time() - start_time\n",
+    "    print(f\"Total time taken: {total_time/(60):.2f} minutes\")"
+   ]
   }
  ],
  "metadata": {
